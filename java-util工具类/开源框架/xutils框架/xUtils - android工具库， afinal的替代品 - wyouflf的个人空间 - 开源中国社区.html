@@ -1,0 +1,4835 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://my.oschina.net/u/1171837/blog/147544 -->
+<html lang="zh-CN" xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+  
+  <meta http-equiv="Content-Language" content="zh-CN">
+  <meta name="robots" content="index, follow">
+  <link rel="shortcut icon" type="image/x-icon" href="http://my.oschina.net/img/favicon.ico?t=1408501845000">
+  <title>xUtils - android工具库， afinal的替代品 -  wyouflf的个人空间 - 开源中国社区</title>
+    <meta name="Keywords" content="xUtils,afinal,android,orm,ioc,bitmap,http">
+      <meta name="Description" content="xUtils - android工具库， afinal的替代品：之前因为不喜欢afinal的一些api设计，自己fork了一个分支做修改。 后来越修越来越多，很多结构性的重构，...">
+    <link rel="stylesheet/less" href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/styles.less" type="text/css" media="screen">
+  <link rel="stylesheet" href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/tip-yellowsimple.css" type="text/css">
+  <link rel="stylesheet" type="text/css" href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery.fancybox-1.3.4.css" media="screen">
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery-1.7.1.min.js"></script><style type="text/css" adt="123"></style>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery.form.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery.fancybox-1.3.4.pack.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery.poshytip.min.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/oschina.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/less-1.3.0.min.js"></script><style type="text/css" media="screen" id="less:u-1171837-styles">:focus {
+  outline: 0;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+a {
+  color: #4466bb;
+  outline: 0;
+}
+a:hover {
+  color: #0000aa;
+}
+ul,
+ol {
+  list-style-type: none;
+}
+img {
+  border: 0;
+}
+textarea {
+  resize: none;
+}
+body {
+  background: #f9f9f9;
+  text-align: center;
+  font-size: 10pt;
+}
+label.SELECTED {
+  color: #A00;
+  font-weight: bold;
+}
+.clear {
+  clear: both;
+  font-size: 1px;
+  line-height: 0;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.ostable {
+  width: 100%;
+  table-layout: fixed;
+}
+.ostable td {
+  vertical-align: top;
+  overflow: hidden;
+}
+.highlight {
+  color: #A00;
+  padding: 0 1px;
+  margin: 0 2px;
+}
+.NoData {
+  text-align: center;
+  padding: 20px 0;
+  color: #999999;
+}
+a.tag {
+  background-color: #E0EAF1;
+  border-bottom: 1px solid #3E6D8E;
+  border-right: 1px solid #7F9FB6;
+  color: #3E6D8E;
+  font-size: 8pt;
+  line-height: 2.4;
+  margin: 2px 2px 2px 0;
+  padding: 2px 4px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.tag:hover {
+  background-color: #3E6D8E;
+  color: #fff;
+}
+a.project {
+  background-color: #cfc;
+  color: #060;
+}
+a.project:hover {
+  background-color: #5cc26f;
+  color: #fff;
+}
+a.rndbutton {
+  background: #5cc26f;
+  color: #fff;
+  text-decoration: none;
+  height: 30px;
+  float: left;
+  margin: 0;
+  border: 0px solid #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+a.rndbutton:hover {
+  background: #40ab54;
+}
+a.rndbutton:hover span {
+  background: #40ab54;
+  color: #fff;
+}
+a.rndbutton span {
+  background: #5cc26f;
+  color: #fff;
+  float: left;
+  margin: 0 0 0 12px;
+  padding: 0 12px 0 0;
+  height: 30px;
+  line-height: 30px;
+}
+.obj_type_1 a.title {
+  background: url('/img/a2.gif') no-repeat left center;
+  background-position: 5px;
+}
+.obj_type_2 a.title {
+  background: url('/img/thread.gif') no-repeat left center;
+  background-position: 5px;
+}
+.obj_type_3 a.title {
+  background: url('/img/thread.gif') no-repeat left center;
+  background-position: 5px;
+}
+.obj_type_4 a.title {
+  background: url('/img/a3.gif') no-repeat left center;
+  background-position: 5px;
+}
+.obj_type_5 a.title {
+  background: url('/img/code.gif') no-repeat left center;
+}
+.obj_type_7 a.title {
+  background: url('/img/a3.gif') no-repeat left center;
+  background-position: 5px;
+}
+.init_degree {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+}
+.first_degree {
+  -webkit-transform: rotate(-90deg) translate(-100%);
+  -moz-transform: rotate(-90deg) translate(-100%);
+  -o-transform: rotate(-90deg) translate(-100%);
+  -ms-transform: rotate(-90deg) translate(-100%);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+}
+.second_degree {
+  -webkit-transform: rotate(-180deg) translate(-100%, -100%);
+  -moz-transform: rotate(-180deg) translate(-100%, -100%);
+  -o-transform: rotate(-180deg) translate(-100%, -100%);
+  -ms-transform: rotate(-180deg) translate(-100%, -100%);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+}
+.third_degree {
+  -webkit-transform: rotate(-270deg) translate(0, -100%);
+  -moz-transform: rotate(-270deg) translate(0, -100%);
+  -o-transform: rotate(-270deg) translate(0, -100%);
+  -ms-transform: rotate(-270deg) translate(0, -100%);
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+}
+#OSC_Screen {
+  width: 990px;
+  margin: 0px auto;
+  text-align: left;
+  padding: 0 4px;
+  margin-bottom: 50px;
+}
+#OSC_Banner {
+  background: #40aa53;
+  border-top: 0;
+  height: 36px;
+  padding: 2px 5px 0 5px;
+}
+#OSC_Banner #OSC_Logo {
+  float: left;
+  margin: 1px 0 0 2px;
+  width: 105px;
+}
+#OSC_Banner #OSC_Logo a {
+  float: left;
+  background: url('/img/2012/osc2.png') no-repeat 0 1px;
+  width: 100px;
+  height: 34px;
+  text-indent: -9999px;
+}
+#OSC_Banner #OSC_Slogon {
+  float: left;
+  margin: 10px 0 0 10px;
+  color: #f2f2f2;
+}
+#OSC_Banner #OSC_Slogon a {
+  color: #fff;
+}
+#OSC_Banner #OSC_Channels {
+  margin-right: 10px;
+  float: right;
+  font-weight: bold;
+  font-size: 10.5pt;
+  height: 35px;
+  line-height: 35px;
+}
+#OSC_Banner #OSC_Channels ul li {
+  float: left;
+  margin: 0px 5px 0 10px;
+}
+#OSC_Banner #OSC_Channels ul li a {
+  text-decoration: none;
+  color: #f2f2f2;
+  padding: 2px;
+}
+#OSC_Banner #OSC_Channels ul li a:hover {
+  color: #fff;
+}
+#OSC_Notification {
+  width: 200px;
+  margin-left: 10px;
+  font-size: 9pt;
+}
+#OSC_Notification a.msgbox {
+  background: url('/img/msg.gif') no-repeat 5px 5px;
+  padding: 2px 4px 2px 22px;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#OSC_Notification a.newmsg {
+  color: #A00;
+  background: url('/img/msg2.gif') no-repeat 5px 3px;
+  padding: 2px 4px 2px 22px;
+  text-decoration: none;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#OSC_Notification a:hover {
+  font-weight: bold;
+  color: #C00;
+}
+#OSC_Notification a em {
+  font-style: normal;
+  font-weight: bold;
+  margin-right: 2px;
+  text-decoration: underline;
+}
+#OSC_Topbar {
+  margin: 2px 0;
+}
+#OSC_Topbar #VisitorInfo {
+  font-size: 9pt;
+  color: #888;
+  float: left;
+}
+#OSC_Topbar #VisitorInfo a {
+  text-decoration: none;
+}
+#OSC_Topbar #SearchBar form {
+  float: right;
+  margin: 3px 0 0 0;
+  width: 310px;
+  background: #eee;
+  padding: 1px;
+}
+#OSC_Topbar #SearchBar form .ipt {
+  display: inline-block;
+  height: 22px;
+  padding: 2px 0 0 5px;
+  background: #FFF;
+}
+#OSC_Topbar #SearchBar form .ipt input {
+  color: #868686;
+  width: 200px;
+  border: none;
+  background: #FFF;
+  padding: 0;
+  height: 20px;
+  outline: 0;
+}
+#OSC_Topbar #SearchBar form .bnt {
+  color: #FFF;
+  text-align: center;
+  background: #5cc26f;
+  width: 45px;
+  height: 24px;
+  border: 0;
+  cursor: pointer;
+}
+#OSC_Topbar #SearchBar form .bnt:hover {
+  background: #40ab54;
+}
+#OSC_Topbar #SearchBar form .search-by {
+  float: left;
+}
+#OSC_Topbar #SearchBar form .search_on {
+  background: #FFF;
+  text-align: center;
+  position: relative;
+}
+#OSC_Topbar #SearchBar form .search_on .text {
+  height: 24px;
+  line-height: 23px;
+  width: 50px;
+  display: block;
+  color: #868686;
+  cursor: pointer ;
+  text-align: left;
+  padding: 0px 0 0 10px;
+  background: url(/img/android/selectbox_bg.png) no-repeat;
+}
+#OSC_Topbar #SearchBar form .search_on .text.on {
+  background-position: 0 -24px;
+}
+#OSC_Topbar #SearchBar form .search_on .text.hover {
+  background-position: 0 -48px;
+}
+#OSC_Topbar #SearchBar form .search_list {
+  background: #FFF;
+  display: none;
+  position: absolute;
+  width: 80px;
+  border: 1px solid #c3c3c3;
+  z-index: 9999;
+}
+#OSC_Topbar #SearchBar form .search_list li {
+  width: 80px;
+  height: 24px;
+  line-height: 24px;
+}
+#OSC_Topbar #SearchBar form .search_list a {
+  display: block;
+  color: #333 !important;
+  font-size: 8pt !important;
+  text-decoration: none;
+  padding: 0 0 0 10px;
+}
+#OSC_Topbar #SearchBar form .search_list a:hover {
+  background: #3399ff;
+  color: #ffffff !important;
+}
+#OSC_Topbar #SearchBar form .f_r {
+  float: right;
+}
+#OSC_Topbar #SearchBar form .f_l {
+  float: left;
+}
+#OSC_Topbar #SearchBar form .last {
+  margin: 0 !important;
+}
+#OSC_Topbar #SearchBar form .hide {
+  display: none;
+}
+/* 底部版权 */
+#OSC_Footer {
+  margin-top: 20px;
+  padding-bottom: 50px;
+  height: 38px;
+  line-height: 38px;
+  border-top: 2px solid #cccccc;
+  color: #666666;
+  text-align: center;
+}
+#OSC_Content {
+  margin: 10px 2px;
+  position: relative;
+}
+#SpaceLeft {
+  float: left;
+  width: 220px;
+}
+#SpaceLeft a {
+  text-decoration: none;
+}
+#SpaceMain {
+  margin: 0 220px 0 230px;
+  word-wrap: break-word;
+}
+#SpaceRight {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 210px;
+  word-wrap: break-word;
+}
+.SpaceList {
+  margin: 0 0 0 230px;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  background: #fff;
+  word-wrap: break-word;
+}
+.SpaceList .TopBar {
+  margin: 0 0 25px 0;
+  color: #999999;
+  font-size: 9pt;
+  height: 22px;
+  line-height: 22px;
+}
+.SpaceList .TopBar h1 {
+  color: #333333;
+}
+.Owner {
+  background: #5cc26f;
+  padding: 15px 5px 15px 10px;
+  position: relative;
+}
+.Owner a.Img:hover {
+  background: none;
+}
+.Owner a {
+  color: #fff;
+  padding: 0px;
+}
+.Owner a:hover {
+  background: #fff;
+  color: #5cc26f;
+}
+.Owner a.ThemeSetting {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-indent: -9999px;
+  width: 28px;
+  height: 28px;
+  background: url('/img/2012/enter_narrow.png') no-repeat 0 0;
+}
+.Owner a.ThemeSetting:hover {
+  background: url('/img/2012/enter_narrow.png') no-repeat 0 -30px;
+}
+.Owner .Img img {
+  float: left;
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  padding: 3px;
+  margin: 0 8px 10px 0;
+}
+.Owner .Img:hover img {
+  background: #eee;
+}
+.Owner span.U {
+  float: left;
+  width: 130px;
+}
+.Owner span.U .Name {
+  color: #FFF;
+  font-size: 14pt;
+  display: block;
+  margin: 0 0 12px 0;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+.Owner span.U .Name {
+  background: none;
+}
+.Owner span.U .opts {
+  color: #fff;
+  font-size: 9pt;
+}
+.Owner span.U .opts a {
+  color: #fff;
+}
+.Owner span.U .opts a:hover {
+  background-color: #fff;
+  color: #5cc26f;
+}
+.Owner a#gender_icon {
+  text-indent: -9999px;
+  background-color: #5cc26f;
+}
+.Owner a#gender_icon:hover {
+  background-color: #5cc26f;
+}
+.Owner .stat {
+  color: #fff;
+  font-size: 9pt;
+}
+.Owner .stat a {
+  margin-right: 3px;
+}
+.Owner .stat a span {
+  font-size: 9pt;
+}
+.Resume {
+  background: #7798cb url('/img/2012/resume24.png') no-repeat left bottom;
+  margin: 3px 0 0 0;
+  color: #fff;
+  padding: 18px 10px 18px 40px;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+.Resume textarea {
+  width: 170px;
+  height: 60px;
+  font-size: 9pt;
+}
+/*勋章*/
+.Medals {
+  background-color: #5cc26f;
+  margin-top: 3px;
+  padding: 5px;
+}
+.Opts {
+  margin: 3px 0 0 0;
+}
+.Opts a {
+  cursor: pointer;
+  float: left;
+  width: 108px;
+  height: 108px;
+}
+.Opts a.a1 {
+  background-color: #5cc26f;
+}
+.Opts a.a1:hover {
+  background-color: #40ab54;
+}
+.Opts a.a2 {
+  background-color: #5cc26f;
+}
+.Opts a.a2:hover {
+  background-color: #40ab54;
+}
+.Opts a span {
+  padding: 82px 0 0 10px;
+  font-size: 11pt;
+  color: #fff;
+}
+.Opts a i {
+  text-indent: -9999px;
+  display: block;
+  margin: 10px 0 0 20px;
+  width: 67px;
+  height: 67px;
+  background-image: url('/img/2012/space-opts.png');
+  background-repeat: no;
+}
+.Opts a.a2 {
+  margin-left: 4px;
+}
+.Opts a.blog i {
+  background-position: 0 -67px;
+}
+.Opts a.admin i {
+  background-position: 0 -201px;
+}
+.Opts a.sendmsg i {
+  background-position: 0 -134px;
+}
+.Opts a.ask i {
+  background-position: 0 0;
+}
+.Mod {
+  background: #EAEAEA;
+  margin: 3px 0 0 0;
+  padding: 5px 0;
+  color: #666666;
+  overflow: hidden;
+}
+.Mod strong {
+  display: block;
+  font-size: 12pt;
+  border-bottom: 2px solid #7798cb;
+  padding: 0 10px 5px 10px;
+  color: #666666;
+}
+.Mod strong .more {
+  float: right;
+  font-weight: normal;
+  font-size: 10pt;
+  margin: 3px 0 0 0;
+}
+.Mod ul,
+.Mod ol {
+  margin: 10px;
+  line-height: 24px;
+}
+.Users ul li {
+  float: left;
+}
+.Users ul li a {
+  margin: 1px 1px 0 0;
+}
+.Users ul li img {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #EAEAEA;
+}
+.Users ul li a:hover img {
+  border: 1px solid #5cc26f;
+}
+.Users .more {
+  margin: 10px 0;
+  text-align: right;
+  padding: 0 5px 0 0 ;
+}
+#BlogCatalogs ul li a {
+  background: url('/img/fw_arrow.gif') no-repeat left center;
+  padding-left: 15px;
+  color: #333333;
+}
+#BlogCatalogs ul li a:hover {
+  color: #000;
+}
+#BlogCatalogs ul li span {
+  color: #666666;
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+  margin-left: 5px;
+}
+#BlogCatalogs ul li.draft a {
+  font-weight: bold;
+}
+#HotBlogs ol li a {
+  color: #333333;
+  display: block;
+}
+#HotBlogs ol li a:hover {
+  color: #000;
+  background: #ddd;
+}
+#BlogLinks li a {
+  color: #333333;
+  display: block;
+}
+#BlogLinks li a:hover {
+  color: #000;
+  background: #ddd;
+}
+#RelativeBlogs {
+  position: fixed;
+  bottom: 0;
+  right: -400px;
+  width: 380px;
+  height: 160px;
+  background-color: #FFFFFF;
+  font-size: 10.5pt;
+  border: 1px solid #5cc26f;
+}
+#RelativeBlogs strong {
+  display: block;
+  margin: 0 0 10px 0;
+  background: #5cc26f;
+  color: #fff;
+  padding: 2px 5px;
+}
+#RelativeBlogs strong a#btn_close {
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  font-size: 9pt;
+}
+#RelativeBlogs ul {
+  margin: 10px;
+}
+#RelativeBlogs ul li {
+  line-height: 22px;
+}
+#RelativeBlogs ul li a {
+  background: url('/img/a2.gif') no-repeat left center;
+  padding-left: 15px;
+  font-size: 10pt;
+  text-decoration: none;
+}
+#RelativeBlogs ul li .date {
+  float: right;
+  font-size: 8pt;
+  color: #666666;
+  -webkit-text-size-adjust: none;
+}
+#BlogReplies ul li {
+  color: #666666;
+  border-bottom: 1px dashed #999999;
+}
+.TopBar .NavPath {
+  float: left;
+}
+.TopBar .PreviewMod {
+  float: right;
+}
+.TopBar .PreviewMod a.active {
+  font-weight: bold;
+  color: #4466BB;
+}
+.TopBar .PreviewMod a {
+  color: #666666;
+}
+.BlogList .Blog {
+  margin: 0 0 15px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  position: relative;
+}
+.BlogList .Blog .date {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  background: #7798cb;
+  font-size: 8pt;
+  color: #fff;
+  -webkit-text-size-adjust: none;
+  text-align: center;
+  padding: 2px 3px;
+}
+.BlogList .Blog .date em {
+  font-style: normal;
+  font-family: Calibri;
+  font-size: 16pt;
+  display: block;
+  font-weight: bold;
+}
+.BlogList .Blog .title {
+  margin-right: 80px;
+}
+.BlogList .Blog h2 {
+  font-size: 12pt;
+  margin: 0 0 5px 0;
+}
+.BlogList .Blog h2.BlogAccess_false {
+  background: url('/img/lock.gif') no-repeat 3px center;
+  padding-left: 20px;
+}
+.BlogList .Blog h2.BlogTop_1 {
+  background: url('/img/top.gif') no-repeat left center;
+  padding-left: 22px;
+}
+.BlogList .Blog h2.BlogSong {
+  background: url('/img/song.gif') no-repeat left center;
+  padding-left: 22px;
+}
+.BlogList .Blog h2 a {
+  text-decoration: none;
+  color: #333333;
+}
+.BlogList .Blog .outline {
+  color: #666666;
+  font-size: 9pt;
+}
+.BlogList .Blog .bottom {
+  margin: 15px 0 8px 0;
+  color: #666666;
+  font-size: 9pt;
+}
+.BlogList .Blog .bottom a.fullcontent {
+  margin-left: 10px;
+}
+.BlogList .Blog .TextContent {
+  margin: 15px 0 0 0px;
+  color: #666666;
+  line-height: 22px;
+  overflow: hidden;
+  letter-spacing: 1px;
+}
+.BlogList .Blog a {
+  color: #666666;
+}
+.BlogList .Blog a:hover {
+  color: #333333;
+}
+.BlogList .Blog .catalog {
+  display: inline-block;
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: middle;
+}
+.BlogList .Blog .catalog ul {
+  position: absolute;
+  top: 18px;
+  left: 27px;
+  width: 120px;
+  background: #5cc26f;
+  z-index: 1000;
+  overflow: hidden;
+  border: 1px solid #F1F1F1;
+  padding: 3px;
+  display: none;
+  vertical-align: middle;
+  color: #FFF;
+}
+.BlogList .Blog .catalog ul li {
+  line-height: 20px;
+  text-indent: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.BlogList .Blog .catalog ul li img {
+  cursor: pointer;
+  vertical-align: middle;
+  float: right;
+  margin-right: 5px;
+  display: none;
+}
+.BlogList .Blog .catalog ul li:hover img {
+  display: block;
+}
+.BlogList .Blog .setting {
+  margin-left: 4px;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid #FFF;
+}
+.BlogList .Blog .setting:hover {
+  border: 1px solid #F3F3F3;
+}
+.BlogTitle {
+  padding: 5px 70px 5px 0px;
+  margin: 0 0 10px 0;
+  border-bottom: 2px solid #5cc26f;
+  position: relative;
+}
+.BlogTitle h1 {
+  font-size: 22px;
+  margin: 0 0 10px 0;
+  color: #000;
+  font-weight: normal;
+}
+.BlogTitle .BlogStat {
+  color: #666666;
+}
+.BlogTitle .BlogStat strong {
+  margin: 0 2px;
+  color: #A00;
+}
+.BlogTitle .BlogStat a {
+  color: #A00;
+  text-decoration: none;
+}
+.BlogTitle .BlogStat a:hover {
+  color: #F00;
+}
+.BlogTitle .BlogStat .admin em {
+  font-style: normal;
+  font-weight: bold;
+  color: #A00;
+  margin: 0 2px;
+}
+.BlogTitle .tvote {
+  height: 55px;
+  width: 50px;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  bottom: 5px;
+}
+.BlogTitle .tvote .num,
+.BlogTitle .tvote .vote {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  font-style: normal;
+  color: #FFF;
+  background: #5cc26f;
+  cursor: pointer;
+}
+.BlogTitle .tvote .num:hover,
+.BlogTitle .tvote .vote:hover {
+  background-color: #4dbc62;
+}
+.BlogTitle .tvote .num {
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+}
+.BlogTitle .tvote .vote {
+  height: 35px;
+  line-height: 35px;
+  font-size: 20px;
+}
+.BlogContent {
+  font-size: 12.5px;
+  overflow: hidden;
+}
+.BlogContent p {
+  margin-bottom: 15pt;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+.BlogContent pre {
+  line-height: 18px;
+  margin: 10px 0 10px 20px;
+  font-size: 9pt;
+  font-family: Courier New,Arial;
+  border: 1px solid #ddd;
+  border-left: 5px solid #6CE26C;
+  background: #f6f6f6;
+  padding: 5px;
+}
+.BlogAnchor {
+  background: #f4f7f9;
+  padding: 10px;
+}
+.BlogAnchor p {
+  font-size: 12px;
+}
+.BlogAnchor .AnchorContent {
+  padding: 5px 0px;
+}
+.BlogAnchor li {
+  list-style: none;
+  padding: 1px 0;
+}
+.BlogAnchor a {
+  text-decoration: none;
+}
+.BlogAnchor a:hover {
+  color: #5cc26f;
+}
+.BlogAnchor .osc_h1 {
+  text-indent: 20px;
+  font-size: 14px;
+}
+.BlogAnchor .osc_h2 {
+  text-indent: 35px;
+  font-size: 13px;
+}
+.BlogAnchor .osc_h3 {
+  text-indent: 50px;
+  font-size: 12px;
+}
+.BlogAnchor .osc_h4 {
+  text-indent: 65px;
+  font-size: 11px;
+}
+.BlogAnchor .osc_h5 {
+  text-indent: 80px;
+  font-size: 10px;
+}
+.BlogAnchor .osc_h6 {
+  text-indent: 95px;
+  font-size: 9px;
+}
+/*   happysha 2013-07-07   */
+.BlogContent {
+  color: #333;
+  padding: 10px;
+}
+.BlogAbstracts {
+  padding: 10px;
+  background: #f4f7f9;
+  font-size: 12px;
+}
+.BlogAbstracts strong {
+  font-size: 15px;
+  color: #15a230;
+  font-weight: normal;
+}
+.BlogAbstracts span {
+  font-size: 12.5px;
+  letter-spacing: 0.7px;
+}
+em.corner {
+  font-size: 13px;
+  font-weight: normal;
+  color: #FFF;
+  display: inline-block;
+  line-height: 20px;
+  background: #5cc26f;
+  font-style: normal;
+  padding: 1px 8px;
+  margin-right: 10px;
+}
+.BlogAnchor p {
+  font-size: 18px;
+  color: #15a230;
+}
+.BlogAnchor p strong {
+  font-weight: normal;
+  font-size: 14px;
+}
+.BlogContent,
+.BlogAbstracts,
+.BlogAnchor {
+  line-height: 180%;
+}
+.BlogContent h1,
+.BlogContent h2,
+.BlogContent h3,
+.BlogContent h4,
+.BlogContent h5,
+.BlogContent h6,
+.BlogContent p,
+.BlogContent ol,
+.BlogContent ul {
+  line-height: 180%;
+}
+.BlogContent h1,
+.BlogContent h2,
+.BlogContent h3,
+.BlogContent h4,
+.BlogContent h5,
+.BlogContent h6 {
+  font-weight: 600;
+}
+.BlogContent h1 {
+  font-size: 24px;
+  margin: 20px 0 10px 0;
+}
+.BlogContent h2 {
+  font-size: 20px;
+  margin: 20px 0 10px 0;
+}
+.BlogContent h3 {
+  font-size: 16px;
+  margin: 15px 0 10px 0;
+}
+.BlogContent h4 {
+  font-size: 14px;
+  margin: 10px 0;
+}
+.BlogContent h5 {
+  font-size: 12px;
+  margin: 10px 0;
+}
+.BlogContent h6 {
+  font-size: 12px;
+  margin: 10px 0;
+}
+.BlogContent p {
+  font-size: 12.5px;
+  margin: 8px 0;
+  letter-spacing: 0.5px;
+}
+.BlogContent ol,
+.BlogContent ul {
+  margin: 10px 20px;
+}
+.BlogContent img {
+  max-width: 640px;
+  padding: 5px;
+  background: #f4f7f9;
+  border: 1px solid #ddd;
+  margin: 10px 0;
+}
+.BlogContent blockquote:before,
+.BlogContent blockquote:after,
+.BlogContent q:before,
+.BlogContent q:after {
+  content: "";
+  font-size: 24px;
+  color: #0F6575;
+  font-family: Helvetica, arial, '宋体';
+  position: absolute;
+}
+.BlogContent blockquote:before {
+  content: "“";
+  top: 5px;
+  left: 10px;
+}
+.BlogContent blockquote:after {
+  content: "”";
+  bottom: -5px;
+  right: 15px;
+}
+.BlogContent q,
+.BlogContent blockquote {
+  position: relative;
+  background: #F4FDFD;
+  text-align: left;
+  margin: 20px 10px;
+  padding: 3px 25px 3px 25px;
+  color: #333;
+  font-size: 10pt;
+  line-height: 22px;
+  border-left: 3px solid #A4DAF0;
+}
+.BlogContent blockquote i,
+.BlogContent q i {
+  font-style: normal;
+  font-size: 12px;
+}
+.BlogContent b {
+  font-style: normal;
+  font-weight: 600;
+}
+.BlogContent > table {
+  border-collapse: collapse;
+  border-spacing: 1px;
+  border: 1px solid #F8F8F8;
+  font-size: 12px;
+  color: #444;
+}
+.BlogContent > table th,
+.BlogContent > table td {
+  padding: 0 2px;
+}
+.BlogContent > table th {
+  font-weight: 500;
+  background: #f3f3f3;
+}
+.BlogContent > table th,
+.BlogContent > table td {
+  border: 1px solid #F8F8F8;
+  padding: 1px 2px;
+}
+.BlogContent a {
+  color: #FF8373;
+  font-size: 12px;
+}
+.BlogContent ul,
+ol {
+  margin: 0 0 10px 20px;
+}
+.BlogContent ul {
+  list-style-type: disc;
+}
+.BlogContent ol {
+  list-style-type: decimal;
+}
+.BlogContent code {
+  font-family: 'Consolas', 'Bitstream Vera Sans Mono', 'Courier New', 'Courier', 'monospace !important';
+  margin: 0 2px;
+  padding: 1px 3px;
+  border: 1px solid #EEE;
+  background-color: #FcFcFc;
+  border-radius: 3px;
+  word-break: break-all;
+  color: #40AA53;
+}
+.BlogContent pre > code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+.BlogContent pre code {
+  background-color: transparent;
+  border: none;
+}
+.BlogContent .syntaxhighlighter .number code {
+  color: #afafaf !important;
+}
+.BlogShare {
+  padding: 8px 0px;
+  border: 1px solid #DDD;
+  margin: 20px 0px;
+  line-height: 30px;
+}
+.BlogShare a {
+  text-decoration: none;
+}
+.BlogShare strong {
+  margin-left: 15px;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.BlogShare .share_sina img,
+.BlogShare .share_qq img {
+  vertical-align: middle;
+  margin: 3px 8px;
+}
+.BlogShare .BlogVote {
+  height: 30px;
+  background: #5cc26f;
+  display: inline-block;
+  float: right;
+  padding: 3px 8px;
+  line-height: 30px;
+  color: #FFF;
+  margin-right: 5px;
+}
+.BlogShare .BlogVote:hover {
+  background-color: #4dbc62;
+}
+.BlogShare .BlogVote .num {
+  padding: 0px 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.BlogShare .BlogVote .vote {
+  padding: 0px 3px;
+  font-size: 18px;
+  cursor: pointer;
+}
+/*   happysha 2013-07-07   */
+.BlogLinks {
+  margin: 10px 0 20px 0;
+}
+.BlogLinks ul {
+  list-style-type: none;
+  font-weight: bold;
+  height: 24px;
+}
+.BlogLinks ul li.prev {
+  float: left;
+  width: 48%;
+}
+.BlogLinks ul li.next {
+  float: right;
+  width: 48%;
+  text-align: right;
+}
+.BlogCopyright {
+  color: #666666;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  background: #ffe;
+  padding: 5px 15px;
+  font-size: 12px;
+}
+.BlogCopyright a {
+  color: #666666;
+  text-decoration: none;
+}
+.BlogComments h2 {
+  font-size: 18px;
+  color: #444;
+  font-weight: 600;
+  padding: 5px 0px;
+  border-bottom: 1px solid #ccc;
+}
+.BlogComments h2 em {
+  font-size: 12px;
+  padding: 0px 5px;
+  font-style: normal;
+  color: #5cc26f;
+}
+.BlogComments h2 a {
+  float: right;
+  font-weight: normal;
+  font-size: 10pt;
+}
+.BlogComments ul {
+  margin: 10px 0 10px 0;
+}
+.BlogComments ul li {
+  margin: 0 0 10px 0;
+  padding: 5px 0px;
+}
+.BlogComments ul li.even {
+  background: #F6F6F6;
+}
+.BlogComments ul li .portrait {
+  width: 65px;
+  padding-top: 3px;
+}
+.BlogComments ul li .portrait img {
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  background: #fff;
+  border: 1px solid #F1F1F1;
+}
+.BlogComments ul li .body .title {
+  color: #666666;
+  font-size: 9pt;
+}
+.BlogComments ul li .body .title a.user {
+  text-decoration: none;
+  color: #666666;
+  font-weight: bold;
+}
+.BlogComments ul li .body .post {
+  margin: 8px 0 0 0;
+  color: #00A;
+  font-size: 12px;
+}
+.BlogComments ul li .body .post div.ref {
+  border: 1px solid #999;
+  color: #333;
+  margin: 0 0 10px 0;
+  padding: 3px;
+  background: #ffe;
+  font-size: 9pt;
+}
+.BlogComments ul li .body .post div.ref h4 {
+  margin: 0;
+  padding: 2px 0px 3px 0px;
+  color: #1E50A2;
+  font-weight: normal;
+  font-size: 10pt;
+}
+.BlogComments ul li .body .post div.ref p {
+  margin: 0;
+  padding: 2px;
+  line-height: 20px;
+  color: color: #333;
+  font-size: 9pt;
+}
+.BlogComments ul li .body .post img {
+  width: 20px;
+  vertical-align: middle;
+  margin: 0px 2px;
+}
+.BlogComments .inline_reply {
+  margin-top: 10px;
+}
+.BlogCommentForm {
+  width: 650px;
+}
+.BlogCommentForm .comment_form {
+  padding-left: 70px;
+  width: 650px;
+}
+.blg_submit_btn {
+  padding: 5px 10px;
+  text-decoration: none;
+  background: #5cc26f;
+  font-size: 12px;
+  color: #FFF;
+  display: inline-block;
+  border: none;
+  font-family: '微软雅黑';
+  cursor: pointer;
+}
+.blg_submit_btn:hover {
+  background-color: #4dbc62;
+}
+.BlogCommentForm .comment_portrait {
+  float: left;
+  margin-left: 10px;
+}
+.BlogCommentForm .comment_portrait img {
+  width: 40px;
+  height: 40px;
+  padding: 2px;
+  border: #eee 1px solid;
+}
+.BlogCommentForm p {
+  margin: 5px 0px;
+  font-size: 12px;
+}
+.BlogCommentForm a.blog_emotion,
+.BlogCommentForm a.blog_soft {
+  text-decoration: none;
+  padding: 1px 2px 1px 18px;
+  color: #666;
+  border: 1px #FFF solid;
+}
+.BlogCommentForm a.blog_emotion:hover,
+.BlogCommentForm a.blog_soft:hover {
+  border: 1px #F00 solid;
+}
+.BlogCommentForm a.blog_emotion {
+  background: url('/img/space/emotion.gif') no-repeat left center;
+}
+.BlogCommentForm a.blog_soft {
+  background: url('/img/space/app.gif') no-repeat left center;
+}
+.LMod {
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 10px 10px 5px 10px;
+  overflow: hidden;
+}
+.LMod strong {
+  display: block;
+  font-size: 12pt;
+  padding: 0 10px;
+  color: #666666;
+}
+.LMod ul {
+  margin: 15px 0 0 0;
+}
+.LMod ul li {
+  margin: 0 0 10px 0;
+}
+.LMod ul li .d {
+  color: #999999;
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+  margin-left: 5px;
+}
+.LMod ul li a {
+  background: url('/img/a2.gif') no-repeat left 6px;
+  padding-left: 15px;
+  text-decoration: none;
+}
+.LMod .more {
+  margin: 10px 0;
+  text-align: right;
+  padding: 0 5px 0 0 ;
+}
+.MMod {
+  border: 1px solid #eee;
+  background: #fff;
+}
+.RMod {
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 10px;
+}
+.RMod strong {
+  color: #333333;
+  display: block;
+  font-size: 14pt;
+  font-weight: normal;
+  margin: 0 0 10px 0;
+}
+.RMod strong a {
+  float: right;
+  font-weight: normal;
+  font-size: 10pt;
+  margin: 5px 2px 0 0;
+}
+.RMod ul li a {
+  color: #333333;
+  text-decoration: none;
+}
+.RMod ul li a:hover {
+  color: #000;
+}
+#Ad {
+  margin: 20px 0 0 0;
+}
+#Ad strong {
+  display: block;
+  margin: 0 0 10px 0;
+}
+#AboutMe {
+  padding: 20px;
+}
+#MyBlog {
+  background: #5cc26f;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#MyBlog a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16pt;
+  float: left;
+  margin-left: 10px;
+}
+#MyBlog .action {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: url('/img/2012/action-icons.png') no-repeat 0 0;
+}
+#MyBlog:hover {
+  background: #40ab54;
+}
+#TopBlogs {
+  margin: 10px 0 0 0;
+  padding-bottom: 10px;
+}
+#TopBlogs strong {
+  padding-left: 5px;
+  padding-right: 0;
+}
+#TopBlogs strong a {
+  font-weight: normal;
+  float: right;
+  text-decoration: none;
+  color: #000;
+}
+#TopBlogs ul li {
+  margin: 0 5px 3px 0;
+}
+#TopBlogs ul li .s {
+  font-size: 9pt;
+  color: #999;
+  margin-left: 5px;
+}
+#TopBlogs ul li .d {
+  float: right;
+  font-size: 9pt;
+}
+#TopBlogs ul li a {
+  background: none;
+  padding-left: 10px;
+}
+#UserSkills #UserScore {
+  border-bottom: 1px dashed #eee;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+#UserSkills #UserScore h1 {
+  font-size: 12pt;
+  font-weight: normal;
+  float: left;
+  text-align: center;
+}
+#UserSkills #UserScore h1 em {
+  font-size: 20pt;
+  color: red;
+  font-style: normal;
+  color: #F00;
+  display: block;
+  margin: 5px 0 0 0;
+}
+#UserSkills #UserScore h1 a {
+  color: #999;
+  text-decoration: none;
+  display: block;
+}
+#UserSkills #UserScore h1 a:hover {
+  color: #000;
+}
+#UserSkills #UserScore h1.best {
+  width: 80px;
+}
+#UserSkills #UserScore h1.score {
+  width: 90px;
+  border-left: 1px solid #eee;
+  padding-left: 10px;
+}
+#UserSkills h1.Title {
+  color: #5cc26f;
+  font-size: 16pt;
+}
+#UserSkills h1.Title a {
+  font-weight: normal;
+  font-size: 10pt;
+  float: right;
+  margin: 3px 2px 0 0;
+}
+#UserSkills ul li {
+  margin: 10px 0 0 0;
+}
+#UserSkills ul li strong {
+  font-size: 10.5pt;
+  margin: 0px;
+  font-weight: bold;
+}
+#UserSkills ul li p {
+  color: #666;
+}
+#UserSkills ul li .more {
+  display: block;
+}
+#UserSkills #OtherScore {
+  border-bottom: 1px dashed #eee;
+  padding: 5px 0 5px 20px;
+  overflow: hidden;
+}
+#UserSkills #OtherScore h1 {
+  font-size: 10pt;
+  font-weight: normal;
+  float: left;
+}
+#UserSkills #OtherScore h1 em {
+  font-size: 10pt;
+  color: red;
+  font-style: normal;
+  color: #F00;
+  margin: 0 15px 0 0px;
+  float: right;
+  width: 50px;
+  text-align: right;
+}
+#UserSkills #OtherScore h1 a {
+  color: #999;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  width: 140px;
+}
+#UserSkills #OtherScore h1 a:hover {
+  color: #000;
+}
+#Profile li {
+  margin: 10px 0 0 0;
+  font-size: 9pt;
+  color: #666666;
+}
+#Profile li b {
+  display: block;
+  color: #333333;
+  margin-bottom: 2px;
+}
+#Profile li b.inline {
+  display: inline;
+}
+#Profile li a {
+  color: #4466bb;
+}
+#Profile li a:hover {
+  color: #0000aa;
+}
+#FavorBox {
+  margin-top: 10px;
+  padding-bottom: 20px;
+}
+#FavorBox ul {
+  margin: 0 0 0 0;
+}
+#FavorBox ul li {
+  float: left;
+  width: 85px;
+  height: 62px;
+  text-align: center;
+  margin: 30px 0 0 5px;
+  overflow: hidden;
+}
+#FavorBox ul li .logo {
+  display: block;
+  margin: 0 0 3px 0;
+}
+#FavorBox ul li img {
+  width: 40px;
+  height: 40px;
+}
+#FavorBox ul li .name {
+  font-weight: bold;
+  font-size: 9pt;
+  height: 20px;
+  line-height: 20px;
+}
+#FavorUpdate {
+  margin-top: 10px;
+}
+#FavorUpdate ul {
+  margin: 20px 0 0 0;
+}
+#FavorUpdate ul li {
+  margin: 0 0 10px 0;
+  color: #999999;
+  font-size: 9pt;
+}
+#FavorUpdate ul li a {
+  font-weight: bold;
+  font-size: 9pt;
+  display: block;
+  margin-bottom: 2px;
+}
+#FavorUpdate ul li .date {
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+}
+.AdminNav {
+  background: #5cc26f;
+  padding: 10px;
+  font-size: 14pt;
+}
+.AdminNav a.u {
+  float: left;
+  width: 40px;
+}
+.AdminNav a.u img {
+  width: 36px;
+  height: 36px;
+}
+.AdminNav a.h {
+  float: left;
+  color: #fff;
+  margin: 5px 0 0 10px;
+}
+.AdminNav a.h:hover {
+  color: #eee;
+}
+#AdminMenus {
+  font-size: 10.5pt;
+}
+#AdminMenus li.caption {
+  margin-bottom: 20px;
+}
+#AdminMenus li.caption ol {
+  margin: 10px 0 0 0;
+  line-height: 26px;
+}
+#AdminMenus li.caption ol li {
+  padding-left: 10px;
+}
+#AdminMenus li.caption ol li.active {
+  background: #f6f6f6;
+  font-weight: bold;
+}
+#AdminMenus li.caption ol li.active a {
+  color: #333333;
+}
+#AdminBody {
+  min-height: 600px;
+  color: #333333;
+}
+#AdminBody .AdminHead {
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 20px;
+}
+#AdminBody .AdminHead h1 {
+  color: #666666;
+  margin-bottom: 15px;
+}
+#AdminBody .AdminHead h1 a {
+  text-decoration: none;
+  color: #666666;
+}
+#AdminBody .AdminHead h1 .SubTitle {
+  font-weight: normal;
+  font-size: 10.5pt;
+  margin-left: 10px;
+}
+#AdminBody .AdminHead h1 .SubTitle a {
+  color: #666666;
+}
+#AdminBody .AdminHead h1 .SubTitle a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+#AdminBody .AdminHead .RelativeLinks {
+  float: right;
+  margin: 10px 10px 0 0;
+}
+#AdminBody .AdminHead .RelativeLinks a {
+  margin-left: 10px;
+}
+#AdminBody .AdminHead .Tabs {
+  font-size: 16pt;
+  padding-left: 20px;
+  height: 37px;
+  height: 37px;
+}
+#AdminBody .AdminHead .Tabs li {
+  float: left;
+  margin-right: 10px;
+}
+#AdminBody .AdminHead .Tabs li a {
+  display: block;
+  padding: 5px 10px;
+  color: #666666;
+  text-decoration: none;
+}
+#AdminBody .AdminHead .Tabs li a:hover {
+  color: #000;
+}
+#AdminBody .AdminHead .Tabs li a.active {
+  background: #7798cb;
+  color: #fff;
+}
+#AdminBody .AdminHead .Tabs li a.active:hover {
+  color: #fff;
+}
+#ProfileForms .Langs strong {
+  display: block;
+}
+#ProfileForms .Langs ul li {
+  float: left;
+  width: 160px;
+  height: 25px;
+}
+#ProfileForms .Fields ul li {
+  float: left;
+  width: 220px;
+  height: 25px;
+}
+.Drafts ul li {
+  margin: 0 0 20px 0;
+  border-bottom: 1px dashed #cccccc;
+  padding-bottom: 10px;
+}
+.Drafts ul li h2 {
+  color: #999999;
+}
+.Drafts ul li h2 a.title {
+  font-size: 12pt;
+  color: #333333;
+  text-decoration: none;
+}
+.Drafts ul li h2 .opts {
+  float: right;
+  font-weight: normal;
+  font-size: 10pt;
+}
+.Drafts ul li p {
+  color: #999999;
+  margin: 10px 10px 0 10px;
+  line-height: 24px;
+}
+.BlogCommentList li {
+  margin: 0 0 10px 0;
+  border-bottom: 1px dashed #666666;
+  padding-bottom: 10px;
+}
+.BlogCommentList li .user {
+  width: 50px;
+}
+.BlogCommentList li .user img {
+  width: 36px;
+  height: 36px;
+}
+.BlogCommentList li .body {
+  overflow: hidden;
+}
+.BlogCommentList li .body a {
+  font-weight: bold;
+}
+.BlogCommentList li .body p {
+  color: #666666;
+  margin: 5px 0 0 0;
+  line-height: 22px;
+}
+.BlogCommentList li .opts {
+  width: 100px;
+}
+.BlogCommentList li .opts a {
+  display: block;
+  text-decoration: none;
+}
+.BlogCatalogManage form {
+  margin: 20px 0 0 0;
+}
+.BlogCatalogManage form h3 {
+  font-size: 10.5pt;
+  margin: 0 0 10px 0;
+}
+.BlogCatalogManage form h3 span {
+  font-weight: normal;
+  margin: 0 0 0 10px;
+  color: #666666;
+}
+.BlogCatalogManage form.BlogCatalogs table {
+  background: #cccccc;
+}
+.BlogCatalogManage form.BlogCatalogs table th {
+  background: #999999;
+  color: #333333;
+  padding: 3px 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.BlogCatalogManage form.BlogCatalogs table td {
+  background: #fff;
+  padding: 3px 5px;
+}
+.BlogCatalogManage form.BlogCatalogs table td a {
+  text-decoration: none;
+}
+.BlogCatalogManage form.BlogCatalogs table td.idx,
+.BlogCatalogManage form.BlogCatalogs table td.num {
+  text-align: center;
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+}
+.BlogLinkManage form {
+  margin: 20px 0 0 0;
+}
+.BlogLinkManage form h3 {
+  font-size: 10.5pt;
+  margin: 0 0 10px 0;
+}
+.BlogLinkManage form h3 span {
+  font-weight: normal;
+  margin: 0 0 0 10px;
+  color: #666666;
+}
+.BlogLinkManage form li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+.BlogLinkManage form li label {
+  float: left;
+  width: 80px;
+  text-align: right;
+}
+.BlogLinkManage form .submit input.BUTTON {
+  background: #5cc26f;
+  border: none;
+  color: #FFF;
+  font-weight: normal;
+  font-size: 11pt;
+  cursor: pointer;
+  padding: 2px 8px;
+  margin-right: 5px;
+}
+.BlogLinkManage form .submit input.BUTTON:hover {
+  background: #40ab54;
+}
+.BlogLinkManage form.BlogLinks table {
+  background: #cccccc;
+}
+.BlogLinkManage form.BlogLinks table th {
+  background: #5cc26f;
+  color: #FFF;
+  padding: 3px 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.BlogLinkManage form.BlogLinks table td {
+  background: #fff;
+  padding: 3px 5px;
+}
+.BlogLinkManage form.BlogLinks table td a {
+  text-decoration: none;
+}
+.BlogLinkManage form.BlogLinks table td.idx,
+.BlogLinkManage form.BlogLinks table td.num {
+  text-align: center;
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+}
+#Logs {
+  margin: 10px 0 0 0;
+  padding: 10px;
+}
+#Logs .UserLogs {
+  margin: 20px 10px;
+}
+ul.LogTabs {
+  border-bottom: 1px solid #7798cb;
+  padding-left: 10px;
+  height: 28px;
+  line-height: 28px;
+}
+ul.LogTabs li {
+  float: left;
+  margin-right: 5px;
+}
+ul.LogTabs li a {
+  display: block;
+  background: #f6f6f6;
+  text-decoration: none;
+  font-size: 10.5pt;
+  padding: 0 10px;
+  color: #999999;
+}
+ul.LogTabs li a:hover {
+  color: #666666;
+}
+ul.LogTabs li.active a {
+  background: #7798cb;
+  color: #fff;
+}
+ul.LogFilter {
+  padding: 0 0 0 10px;
+  margin-top: 10px;
+  height: 20px;
+  line-height: 20px;
+}
+ul.LogFilter li {
+  float: left;
+  margin-right: 15px;
+}
+ul.LogFilter li a {
+  text-decoration: none;
+  display: block;
+  padding: 0 5px;
+}
+ul.LogFilter li a.active {
+  border: 1px solid #7798cb;
+}
+#do_batch_btn {
+  text-decoration: none;
+}
+#FavoriteList {
+  padding-right: 30px;
+}
+#FavoriteTags {
+  width: 170px;
+}
+#FavoriteTags strong {
+  display: block;
+  margin: 0 0 20px 0;
+}
+#FavoriteList ul.FavList {
+  margin: 20px 0 20px 10px;
+}
+#FavoriteList ul.FavList li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #FFF;
+}
+#FavoriteList ul.FavList li.even {
+  background-color: #FFF;
+}
+#FavoriteList ul.FavList li .opts {
+  float: right;
+  font-size: 9pt;
+}
+#FavoriteList ul.FavList li .opts a {
+  color: #666666;
+}
+#FavoriteList ul.FavList li .opts a:hover {
+  color: #000;
+}
+#FavoriteList ul.FavList li a.title {
+  text-decoration: none;
+  font-size: 10.5pt;
+  padding-left: 25px;
+}
+a.tag.success {
+  background-color: #5cc26f;
+}
+#FavoriteList ul.FavList li .tags {
+  margin-left: 25px;
+}
+#FavoriteList ul.FavList li .tags a {
+  padding: 1px 3px;
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+}
+#FavoriteList ul.FavList li .tags input[type='text'] {
+  padding: 0 3px;
+}
+#FavoriteList ul.FavList li .tags input[type='checkbox'] {
+  float: right;
+  display: none;
+}
+#FavoriteList ul.FavList li .tags form {
+  margin-top: 5px;
+  color: #666666;
+}
+#FavoriteTags .tag span.count {
+  margin-left: 3px;
+}
+#FavoriteTags .tag:hover span.count {
+  display: none;
+}
+#FavoriteTags .tag span.delete {
+  color: #A00;
+  margin-left: 3px;
+  display: none;
+}
+#FavoriteTags .tag:hover span.delete {
+  display: inline;
+  margin-left: 3px;
+}
+ul#TagSetting {
+  margin-top: 20px;
+}
+ul#TagSetting li input {
+  display: none;
+  height: 18px;
+  line-height: 20px;
+}
+ul#TagSetting li {
+  height: 20px;
+  float: left;
+  width: 47%;
+  padding: 2px;
+  margin: 3px 5px;
+}
+ul#TagSetting li span.tagname {
+  margin-right: 5px;
+  padding: 0 5px;
+  height: 20px;
+}
+ul#TagSetting li:hover {
+  background-color: #CCC;
+}
+ul#TagSetting li:hover a {
+  display: inline;
+}
+ul#TagSetting li a {
+  text-decoration: none;
+  float: right;
+  font-size: 12px;
+  display: none;
+}
+ul#TagSetting li a.remove {
+  margin: 0 10px;
+}
+ul#TagSetting li img {
+  vertical-align: middle;
+}
+.NewsList {
+  margin: 0 0 20px 0;
+}
+.NewsList li {
+  margin-bottom: 5px;
+}
+.NewsList li .title a {
+  text-decoration: none;
+}
+.NewsList li .stat {
+  width: 110px;
+  font-size: 9pt;
+  color: #666666;
+}
+.NewsList li .date {
+  width: 70px;
+  color: #666666;
+  font-size: 9pt;
+}
+.NewsList li .opts {
+  width: 110px;
+  text-align: right;
+  color: #666666;
+}
+.ProjectList li {
+  margin: 0 0 10px 0;
+}
+.ProjectList .head {
+  font-weight: bold;
+  color: #000;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 10px;
+}
+.ProjectList li .date {
+  width: 150px;
+  color: #666666;
+  font-size: 9pt;
+}
+.ProjectList li .status {
+  width: 100px;
+}
+.ProjectList li .opts {
+  width: 80px;
+  text-align: right;
+}
+.UserList h1 {
+  border-bottom: 1px solid #cccccc;
+  margin: 0 0 10px 0;
+  padding-bottom: 15px;
+  color: #666666;
+}
+.UserList h1 .SubTitle {
+  font-size: 10pt;
+  font-weight: normal;
+  color: #666666;
+  margin-left: 10px;
+}
+.UserList .SortBar {
+  background: #eee;
+  margin-bottom: 20px;
+  padding: 3px 10px;
+}
+.UserList .SortBar a {
+  margin-left: 10px;
+}
+.UserList .SortBar a.active {
+  font-weight: bold;
+}
+.UserList a {
+  text-decoration: none;
+}
+.UserList li {
+  margin: 0 0 10px 0;
+  border-bottom: 1px dashed #cccccc;
+  padding-bottom: 10px;
+}
+.UserList li td {
+  vertical-align: top;
+  padding: 0;
+}
+.UserList li .avatar {
+  width: 45px;
+}
+.UserList li .avatar img {
+  width: 32px;
+  height: 32px;
+  margin-top: 5px;
+}
+.UserList li .update .name {
+  font-weight: bold;
+}
+.UserList li .update .nickname {
+  margin-left: 10px;
+  color: #666666;
+}
+.UserList li .update .set_memo {
+  display: none;
+}
+.UserList li .update .log {
+  color: #666666;
+  margin: 5px 0 0 0;
+  font-size: 9pt;
+}
+.UserList li .update .log .user {
+  display: none;
+}
+.UserList li .update .log .rpost {
+  margin-left: 10px;
+}
+.UserList li .opts {
+  text-align: right;
+  width: 80px;
+}
+.UserList li .opts a {
+  display: block;
+}
+.Msgs a {
+  text-decoration: none;
+}
+.Msgs li {
+  margin: 0 0 10px 0;
+  border-bottom: 1px dashed #cccccc;
+}
+.Msgs li .user {
+  width: 48px;
+}
+.Msgs li .user img {
+  width: 32px;
+  height: 32px;
+  margin-top: 5px;
+}
+.Msgs li .msg {
+  color: #333333;
+  margin-bottom: 10px;
+  line-height: 22px;
+}
+.Msgs li .bottom {
+  height: 20px;
+}
+.Msgs li .date {
+  float: left;
+  width: 120px;
+  font-size: 9pt;
+  color: #666666;
+}
+.Msgs li .opts {
+  float: right;
+  text-align: right;
+  color: #999999;
+}
+.MsgForm {
+  margin: 0 0 20px 48px;
+}
+.MsgForm strong {
+  display: block;
+  margin-bottom: 5px;
+}
+.MsgForm strong span {
+  font-weight: normal;
+  margin-left: 10px;
+}
+.MsgForm textarea {
+  width: 500px;
+  height: 60px;
+  padding: 3px;
+}
+#MyTweetForm {
+  padding: 10px 15px;
+  border: 1px solid #eee;
+  background: #fff;
+}
+#TForm #TFormEditor {
+  border: 2px solid #5cc26f;
+  padding: 2px;
+  margin: 2px 0 0 0;
+  background: #fff;
+}
+#TForm textarea {
+  border: 0;
+  width: 98%;
+  height: 50px;
+  padding: 5px;
+  font-size: 10pt;
+  overflow: auto;
+  scroll: none;
+  background: #fff;
+}
+#TFormTitle {
+  color: #888;
+  position: relative;
+}
+#TFormTitle .r {
+  float: right;
+  margin: 0px 10px 0 0;
+  font-size: 9pt;
+}
+#TFormTitle .r em {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10.5pt;
+  color: #A00;
+  margin: 0 3px 0 0;
+}
+#TForm #TFormOpts {
+  margin: 0 0 0 5px;
+}
+#TForm #TFormOpts ul {
+  float: left;
+  margin: 2px 0 0 0;
+  padding: 1px;
+}
+#TForm #TFormOpts ul li {
+  display: inline;
+  margin-right: 5px;
+}
+#TForm #TFormOpts ul li a {
+  font-size: 9pt;
+  text-decoration: none;
+  color: #666666;
+  border: 1px solid #fff;
+  padding: 1px 2px 1px 18px;
+}
+#TForm #TFormOpts ul li a:hover {
+  border: 1px solid #5cc26f;
+}
+#TForm #TFormOpts ul li.t {
+  color: #666666;
+  margin-right: 0;
+}
+#TForm #TFormOpts ul li.emotion a {
+  background: url('/img/space/emotion.gif') no-repeat left center;
+}
+#TForm #TFormOpts ul li.img a {
+  background: url('/img/space/img.gif') no-repeat 2px center;
+  padding-left: 20px;
+}
+#TForm #TFormOpts ul li.app a {
+  background: url('/img/space/app.gif') no-repeat left center;
+}
+#TForm #TFormOpts ul li.code a {
+  background: url('/img/code.gif') no-repeat left center;
+}
+#TForm #TFormOpts input.B {
+  cursor: pointer;
+  border: 0;
+  float: right;
+  font-size: 12pt;
+  padding: 3px 20px 5px 20px;
+  margin-right: 10px;
+  color: #fff;
+  background: #5cc26f;
+}
+#TweetFormPopupWraper {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+}
+#TweetFormPopupArrow {
+  background-image: url('/img/space/up_arrow.gif');
+  background-repeat: no-repeat;
+  padding-top: 5px;
+}
+#TweetFormPopupWraper .emotions {
+  background-position: 51px 0px;
+}
+#TweetFormPopupWraper .images {
+  background-position: 107px 0px;
+}
+#TweetFormPopupWraper .code {
+  background-position: 165px 0px;
+}
+#TweetFormPopup {
+  width: 392px;
+  border: 2px solid #cccccc;
+  background: #ffc;
+  padding: 5px;
+}
+#TweetFormPopup a.close {
+  float: right;
+  font-size: 8pt;
+  font-weight: bold;
+  -webkit-text-size-adjust: none;
+}
+#TweetFormPopup a.emotion {
+  float: left;
+  width: 24px;
+  height: 24px;
+  background-image: url('/js/ke/plugins/emoticons/qq.gif');
+  background-repeat: no-repeat;
+  margin: 0 2px 4px 0;
+  border: 1px solid #f6f6f6;
+}
+#TweetFormPopup a.emotion:hover {
+  border: 1px solid #5cc26f;
+}
+#TweetFormPopup .TweetPopupTitle {
+  background: #666666;
+  color: #fff;
+  padding: 3px 5px;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+#TweetFormPopup .TweetPopupTitle a {
+  float: right;
+  color: #FFF;
+}
+#TweetImages .l {
+  margin: 0 0 10px 0;
+}
+#TweetImages .tip {
+  color: #666666;
+}
+#TweetCode {
+  padding: 5px;
+}
+#TweetCode textarea {
+  width: 100%;
+  height: 250px;
+  display: block;
+  margin: 10px 0;
+}
+#TweetCode pre {
+  font-size: 9pt;
+  font-family: Courier New,Arial;
+  border: 1px solid #ddd;
+  border-left: 5px solid #6CE26C;
+  background: #f6f6f6;
+  padding: 5px;
+  margin: 0 0 10px 0;
+}
+.Tweet {
+  border-bottom: 1px dashed #cccccc;
+  padding: 0 0 5px 0;
+  margin: 0 0 10px 0;
+}
+.Tweet a {
+  text-decoration: none;
+}
+.Tweet .TweetUser {
+  width: 48px;
+}
+.Tweet .TweetUser img {
+  width: 32px;
+  height: 32px;
+  margin-top: 5px;
+}
+.Tweet .TweetContent {
+  color: #333333;
+}
+.Tweet .TweetContent h5 {
+  font-weight: normal;
+  font-size: 10pt;
+  color: #999999;
+}
+.Tweet .TweetContent .post {
+  font-size: 10.5pt;
+  line-height: 22px;
+  margin: 5px 0 0 0;
+  overflow: hidden;
+}
+.Tweet .TweetContent .ref {
+  font-size: 9pt;
+  margin: 3px 0 0 0;
+  background: url('/img/space/up_arrow.gif') no-repeat 15px 0;
+  padding-top: 5px;
+}
+.Tweet .TweetContent .ref .p {
+  border: 1px solid #cccccc;
+  background: #f6f6f6;
+  padding: 5px;
+  color: #999999;
+}
+.Tweet .TweetContent .ref .rpost {
+  display: block;
+  margin: 3px 0;
+}
+.Tweet .TweetContent .photo {
+  margin: 10px 0;
+}
+.Tweet .TweetContent .photo a[class^="rotate-"] {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+.Tweet .TweetContent .photo .rotate-clockwise {
+  background: url("/img/rotate-clockwise.png") no-repeat;
+  background-size: 14px 14px;
+}
+.Tweet .TweetContent .photo .rotate-anticlockwise {
+  background: url("/img/rotate-anticlockwise.png") no-repeat;
+  background-size: 14px 14px;
+}
+.Tweet .TweetContent .photo img {
+  border: 1px solid #f6f6f6;
+  padding: 1px;
+  max-width: 450px;
+  cursor: pointer;
+}
+.Tweet .TweetContent .photo img:hover {
+  border: 1px solid #5cc26f;
+}
+.Tweet .TweetContent .photo .ImgMenu a {
+  margin: 0 5px 0 0;
+}
+.Tweet .TweetContent embed {
+  margin: 3px 0 0 0;
+}
+.Tweet .TweetContent .video {
+  margin: 10px 0;
+}
+.tweet_video_operation {
+  display: none;
+}
+.tweet_video_description {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+}
+.tweet_thumb_wrapper {
+  display: inline-block;
+  border: 1px solid #D2D2D2;
+  background: white;
+  overflow: hidden;
+  padding: 3px;
+  position: relative;
+  cursor: pointer;
+}
+.tweet_play_video {
+  opacity: 0.7;
+  display: inline-block;
+  width: 37px;
+  height: 37px;
+  background: url('/img/play_video.png') no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -18px;
+  margin-left: -18px;
+}
+.Tweet .TweetContent pre {
+  margin: 5px 0 10px 0;
+}
+.Tweet .TweetContent .bottom {
+  margin: 10px 0 0 0;
+  height: 18px;
+}
+.Tweet .TweetContent .opts {
+  font-size: 8pt;
+  float: right;
+}
+.Tweet .TweetContent .time {
+  font-size: x-small;
+  margin: 0;
+  color: #888;
+  -webkit-text-size-adjust: none;
+}
+.Tweet .LogReplyList {
+  margin: 0px 0 5px 0;
+  display: none;
+  padding: 5px 5px 5px 0;
+}
+.Tweet .LogReplyList .TweetRplsWrapper {
+  background: #f9f9f9;
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #cccccc;
+}
+.Tweet .LogReplyList .TweetRplsWrapper .loading {
+  background: url('/img/loading.gif') no-repeat left center;
+  padding-left: 22px;
+}
+.Tweet .LogReplyList #closeTweetRpls {
+  float: right;
+  font-weight: bold;
+  line-height: 8px;
+  height: 8px;
+}
+.Tweet .LogReplyList form {
+  margin: 5px 0 0 5px;
+}
+.Tweet .LogReplyList form label {
+  font-size: 9pt;
+}
+.Tweet .LogReplyList .TweetReplyOptions {
+  margin: 3px 0 0 0;
+}
+.Tweet .LogReplyList .TweetReplyOptions input {
+  float: left;
+  margin: 2px 0 0 0;
+}
+.Tweet .LogReplyList .TweetReplyOptions label {
+  float: left;
+}
+.Tweet .pager {
+  margin: 20px 0 0 2px;
+}
+.TweetRpls h6 {
+  font-size: 10pt;
+  margin: 10px 0 5px 0;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 5px;
+}
+.TweetRpls ul {
+  font-size: 9pt;
+}
+.TweetRpls li {
+  border-bottom: 1px dashed #cccccc;
+  padding: 10px 0 5px 0;
+}
+.TweetRpls li .portrait {
+  width: 30px;
+}
+.TweetRpls li .portrait img {
+  width: 24px;
+  height: 24px;
+  margin: 5px 0 0 0;
+}
+.TweetRpls li .TweetReplyBody {
+  overflow: hidden;
+}
+.TweetRpls li .TweetReplyBody .post {
+  line-height: 20px;
+}
+.TweetRpls li .TweetReplyBody .opts {
+  float: none;
+  font-size: 8pt;
+  -webkit-text-size-adjust: none;
+  color: #999999;
+  margin: 10px 0 0 0;
+  height: 18px;
+}
+.TweetRpls li .TweetReplyBody .opts .links {
+  float: right;
+}
+.TweetRpls li .TweetReplyBody .opts a {
+  font-size: 9pt;
+}
+.TweetRpls .all {
+  display: block;
+  margin: 10px 0 0 0 ;
+}
+#TweetReplyPage {
+  width: 600px;
+}
+#TweetReplyPage h1 {
+  font-size: 16pt;
+  margin-bottom: 20px;
+}
+#TweetReplyPage h1 a {
+  text-decoration: none;
+}
+#TweetReplyForm {
+  margin: 0 0 20px 0px;
+}
+#TweetReplyForm textarea {
+  display: block;
+  width: 98%;
+  height: 40px;
+  font-size: 9pt;
+  padding: 2px;
+  margin: 10px 0 5px 0;
+}
+#TweetReplyForm .TweetReplyOptions {
+  float: right;
+}
+#TweetReplyForm #btn_submit {
+  padding: 2px 3px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+#TweetReplyPage #TweetReplies li .TweetReplyBody {
+  width: 450px;
+}
+.gotop {
+  background: url(/img/gotop.gif) no-repeat;
+  display: block;
+  width: 31px;
+  height: 31px;
+}
+#SpaceHomeLayoutSelector {
+  height: 350px;
+}
+#SpaceHomeLayoutSelector a {
+  float: left;
+  width: 48%;
+  text-align: center;
+}
+#SpaceHomeLayoutSelector a em {
+  display: block;
+  font-style: normal;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+#SpaceHomeLayoutSelector a img {
+  border: 3px solid #fff;
+  padding: 5px;
+}
+#SpaceHomeLayoutSelector a.active img {
+  border: 3px solid #7798CB;
+}
+#LayoutSelectorMsg {
+  text-align: center;
+  font-size: 14pt;
+  margin: 20px 0 0 0;
+  color: #000;
+  display: none;
+}
+/* 通用的表单 */
+.error_msg {
+  height: 22px;
+  color: #A00;
+  margin: 10px 0 10px 0;
+  background: url('/img/warning.gif') no-repeat left center;
+  padding-left: 24px;
+}
+.error_msg a {
+  padding: 0 5px 0 5px;
+  font-weight: bold;
+}
+.ok_msg {
+  height: 22px;
+  color: #060;
+  margin: 10px 0 10px 0;
+  background: url('/img/space/tick.png') no-repeat left center;
+  padding-left: 24px;
+}
+.ok_msg a {
+  padding: 0 5px 0 5px;
+  font-weight: bold;
+}
+.MainForm {
+  font-size: 10.5pt;
+}
+.MainForm .Tip {
+  margin: 0 0 10px 0;
+  border: 1px solid #cccccc;
+  background: #ffc;
+  font-size: 9pt;
+  padding: 10px;
+  color: #00A;
+}
+.MainForm .Tip ul {
+  margin: 10px 0 0 10px;
+  line-height: 22px;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+.MainForm form th {
+  text-align: right;
+  padding: 10px;
+  font-weight: normal;
+  color: #666666;
+}
+.MainForm form th.required {
+  font-weight: bold;
+}
+.MainForm form td.t {
+  color: #333333;
+}
+.MainForm form td .tip {
+  color: #5cc26f;
+  font-size: 9pt;
+}
+.MainForm form input.TEXT {
+  padding: 3px;
+}
+.MainForm form select {
+  padding: 3px;
+}
+.MainForm form textarea {
+  padding: 3px;
+  font-size: 12pt;
+}
+.MainForm form textarea#txt_abstracts {
+  width: 600px;
+  height: 80px;
+  font-size: 10.5pt;
+}
+.MainForm form input.BUTTON {
+  font-size: 12pt;
+  padding: 2px 5px;
+}
+.MainForm form input.SUBMIT {
+  font-weight: bold;
+  padding: 2px 10px;
+}
+.MainForm form .submit #error_msg {
+  margin-left: 10px;
+}
+.MainForm .FormSection {
+  margin: 20px 0;
+}
+.MainForm .FormSection ul {
+  margin: 20px 0 0 20px;
+}
+.MainForm .Btn_Save {
+  margin: 20px 0;
+}
+.MainForm .btn_save {
+  background: #5cc26f;
+  color: #fff;
+  text-decoration: none;
+  height: 30px;
+  margin-right: 10px;
+  border: 0px solid #000;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.MainForm .btn_save:hover {
+  background: #40ab54;
+}
+.MainForm .btn_save:hover span {
+  background: #40ab54;
+  color: #fff;
+}
+.write-blog .section {
+  margin: 10px 0px;
+  padding: 5px 0px;
+  font-size: 12.5px;
+}
+.write-blog .b-input {
+  background-color: #fff;
+  border: 1px solid #D9D9D9;
+  border-top-color: #C0C0C0;
+  border-left-color: #d0d0d0;
+  -webkit-transition: border linear .2s;
+  -moz-transition: border linear .2s;
+  transition: border linear .2s;
+}
+.write-blog .c-input {
+  display: inline-block;
+  height: 22px;
+  padding: 5px 1% 3px 1%;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #111;
+  border-radius: 0;
+  vertical-align: middle;
+  margin-top: 5px;
+}
+.write-blog .d-input {
+  display: inline-block;
+  height: 22px;
+  padding: 5px 0px 3px 0px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #111;
+  border-radius: 0;
+  vertical-align: middle;
+  margin-top: 5px;
+}
+.write-blog .f-input {
+  width: 98%;
+}
+.write-blog .o-input {
+  height: 18px;
+  margin: 0px;
+  padding: 3px 5px;
+}
+.write-blog .t-input {
+  width: 98%;
+  height: 65px;
+}
+.write-blog .m-input {
+  width: 100%;
+  min-height: 450px;
+  height: auto;
+}
+.write-blog .s-button {
+  width: 200px;
+  background: #428BD1;
+  height: 32px;
+  border: none;
+  color: #FFF;
+  margin-right: 10px;
+  font-size: 14px;
+  font-family: '微软雅黑', 'Verdana', 'sans-serif', '宋体';
+  cursor: pointer;
+}
+.write-blog .s-button:hover {
+  background: #3270AC;
+}
+.write-blog .blog-title {
+  position: relative;
+}
+.write-blog .blog-title .catalog {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: inline-block;
+  height: 22px;
+  line-height: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  color: #FFF;
+  z-index: 1000;
+}
+.write-blog .blog-title .catalog ul {
+  border: 1px solid #FFF;
+  background: #428BD1;
+}
+.write-blog .blog-title .catalog li {
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  padding: 0px 5px;
+  background: #428BD1;
+}
+.write-blog .blog-title .catalog li:hover {
+  background: #4BA1F3;
+}
+.write-blog .section strong i {
+  display: inline-block;
+  width: 15px;
+  height: 8px;
+  margin-right: 8px;
+}
+.write-blog .section strong {
+  vertical-align: middle;
+}
+.write-blog .check-ico {
+  background: url("/img/selg.jpg") no-repeat right bottom;
+  white-space: nowrap;
+  line-height: 30px;
+  color: #999;
+  border: 2px solid #999;
+  font-size: 9pt;
+  padding: 3px 15px;
+  cursor: pointer;
+  margin: 0px 10px 1px 10px;
+}
+.write-blog .checked,
+.multi-check:hover {
+  background: url("/img/sel-b-type.gif") no-repeat right bottom;
+  border: 2px solid #F00;
+  color: #F00;
+}
+.write-blog .single-check:hover {
+  color: #999;
+}
+.write-blog .checked:hover {
+  color: #F00;
+}
+.write-blog .section .setting-title {
+  color: #777;
+  font-size: 12px;
+  display: inline-block;
+  margin-right: 10px;
+  width: 120px;
+}
+.write-blog .sel-editor span.sel-box {
+  float: right;
+}
+.write-blog .sel-editor .sel-box span {
+  color: #FFF;
+  padding: 2px 8px;
+  background: #E7A940;
+  cursor: pointer;
+  font-size: 12px;
+  float: left;
+}
+.write-blog .sel-editor span.sel-title {
+  background: #FFF;
+  color: #777;
+}
+.write-blog .sel-editor span.editor-item:hover {
+  background: #CF932E;
+}
+.write-blog .sel-editor span.selected-editor {
+  background: #40AA53;
+}
+.write-blog .err-msg {
+  padding: 5px 15px;
+  color: #F00;
+  font-size: 12px;
+}
+.write-blog .ke-container {
+  margin-top: 8px;
+}
+.write-blog .wmd-button .wmd-blog-prev {
+  width: 60px;
+  display: inline-block;
+  background: #FFF;
+  text-align: center;
+}
+.write-blog .wmd-button .wmd-blog-prev:hover {
+  background: #99c0fa;
+}
+.edui-default {
+  text-align: left;
+}
+/*博客分类下拉框*/
+.write-blog .select_box {
+  white-space: nowrap;
+  line-height: 30px;
+  color: #999;
+  border: 2px solid #999;
+  font-size: 9pt;
+  padding: 3px 1px;
+  cursor: pointer;
+  margin: 0px 10px 1px 10px;
+}
+/* end 通用的表单 */
+/* paging */
+.pager {
+  height: 28px;
+  line-height: 28px;
+  margin: 2px 0;
+}
+.pager li {
+  font-size: 14px;
+  text-align: center;
+  margin: 0 2px 0 0;
+  display: inline;
+}
+.pager li a {
+  font-family: Courier New,Arial;
+  color: #58595b;
+  background-color: #f0f0f0;
+  padding: 3px 5px;
+  text-decoration: none;
+}
+.pager li a:hover {
+  color: #000;
+}
+.pager li.prev a {
+  background-color: #cccccc;
+  color: #666666;
+}
+.pager li.next a {
+  background-color: #cccccc;
+  color: #666666;
+}
+.pager li.current a {
+  color: #fff;
+  background: #7798cb;
+}
+/*顶部导航条下拉框*/
+#OSC_Banner .control_select ul.cs_content {
+  border: 1px solid #40aa53;
+}
+#OSC_Banner .control_select ul li a {
+  color: #40aa53;
+}
+/* end pager css */
+/*主站显示team的git推送头像大小限制*/
+span.commit_img img {
+  width: 15px;
+  height: 15px;
+}
+</style>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/scrolltopcontrol.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery.atwho.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/angular.min.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/angular-resource.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/jquery.atwho.css">
+  <link rel="alternate" type="application/rss+xml" title="最新博客" href="http://my.oschina.net/u/1171837/rss">
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://my.oschina.net/action/xmlrpc/rsd?space=1171837">
+  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://my.oschina.net/action/xmlrpc/wlwmanifest?space=1171837"> 
+  <style type="text/css">
+    body,table,input,textarea,select {font-family:微软雅黑,Verdana,sans-serif,宋体;}	
+  </style>
+  <script type="text/javascript">
+  	scrolltotop.offset(100,165);
+	scrolltotop.init();
+  </script>
+<style id="poshytip-css-tip-yellowsimple-medal" type="text/css">div.tip-yellowsimple-medal{visibility:hidden;position:absolute;top:0;left:0;}div.tip-yellowsimple-medal table, div.tip-yellowsimple-medal td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-yellowsimple-medal td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-yellowsimple-medal td.tip-right{background-position:100% 0;}div.tip-yellowsimple-medal td.tip-bottom{background-position:100% 100%;}div.tip-yellowsimple-medal td.tip-left{background-position:0 100%;}div.tip-yellowsimple-medal div.tip-inner{background-position:-10px -10px;}div.tip-yellowsimple-medal div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}</style><script>if(!document.URL.match(new RegExp('^http:\\/\\/(v|music)\\.baidu\\.com'))){
+(function() {
+    Function.prototype.bind = function() {
+        var fn = this, args = Array.prototype.slice.call(arguments), obj = args.shift();
+        return function() {
+            return fn.apply(obj, args.concat(Array.prototype.slice.call(arguments)));
+        };
+    };
+    function A() {}
+    A.prototype = {
+        rules: {
+            'youku_loader': {
+                'find': /^http:\/\/static\.youku\.com\/.*(loader|player_.*)(_taobao)?\.swf/,
+                'replace': 'http://swf.adtchrome.com/loader.swf'
+            },
+            'youku_out': {
+                'find': /^http:\/\/player\.youku\.com\/player\.php\/.*sid\/(.*)/,
+                'replace': 'http://swf.adtchrome.com/loader.swf?VideoIDS=$1'
+            },
+            'pps_pps': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                'replace': 'http://swf.adtchrome.com/pps_20140420.swf'
+            },
+            'iqiyi_1': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'iqiyi_2': {
+                'find': /^http:\/\/www\.iqiyi\.com\/common\/flashplayer\/\d+\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'ku6': {
+                'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player|loader)\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf'
+            },
+            'ku6_topic': {
+                'find': /^http:\/\/player\.ku6\.com\/inside\/(.*)\/v\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf?vid=$1'
+            },
+            'sohu': {
+                'find': /^http:\/\/tv\.sohu\.com\/upload\/swf(\/p2p)?\/\d+\/Main\.swf/,
+                'replace': 'http://swf.adtchrome.com/sohu_20141215.swf'
+            },
+            'sohu_share': {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/my\/v\.swf&/,
+                'replace': 'http://swf.adtchrome.com/sohu_20140917.swf?'
+            },
+            'sohu_sogou' : {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/(\d+)\/v\.swf/,
+                'replace': 'http://swf.adtchrome.com/sohu_20140917.swf?vid=$1'
+            },
+            'letv': {
+                'find': /^http:\/\/player\.letvcdn\.com\/p\/.*\/newplayer\/LetvPlayer\.swf/,
+                'replace': 'http://swf.adtchrome.com/letv_20141117.swf'
+            },
+            'letv_topic': {
+                'find': /^http:\/\/player\.hz\.letv\.com\/hzplayer\.swf\/v_list=zhuanti/,
+                'replace': 'http://swf.adtchrome.com/letv_20141117.swf'
+            },
+            'letv_duowan': {
+                'find': /^http:\/\/assets\.dwstatic\.com\/video\/vpp\.swf/,
+                'replace': 'http://yuntv.letv.com/bcloud.swf'
+            }
+        },
+        _done: null,
+        get done() {
+            if(!this._done) {
+                this._done = new Array();
+            }
+            return this._done;
+        },
+        addAnimations: function() {
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        },
+        animationsHandler: function(e) {
+            if(e.animationName === 'playerInserted') {
+                this.replace(e.target);
+            }
+        },
+        replace: function(elem) {
+            if(this.done.indexOf(elem) != -1) return;
+            this.done.push(elem);
+            var player = elem.data || elem.src;
+            if(!player) return;
+            var i, find, replace = false;
+            for(i in this.rules) {
+                find = this.rules[i]['find'];
+                if(find.test(player)) {
+                    replace = this.rules[i]['replace'];
+                    if('function' === typeof this.rules[i]['preHandle']) {
+                        this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                    }else{
+                        this.reallyReplace.bind(this, elem, find, replace)();
+                    }
+                    break;
+                }
+            }
+        },
+        reallyReplace: function(elem, find, replace) {
+            elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+            var b = elem.querySelector("param[name='movie']");
+            this.reloadPlugin(elem);
+        },
+        reloadPlugin: function(elem) {
+            var nextSibling = elem.nextSibling;
+            var parentNode = elem.parentNode;
+            parentNode.removeChild(elem);
+            var newElem = elem.cloneNode(true);
+            this.done.push(newElem);
+            if(nextSibling) {
+                parentNode.insertBefore(newElem, nextSibling);
+            } else {
+                parentNode.appendChild(newElem);
+            }
+        },
+        init: function() {
+            var handler = this.animationsHandler.bind(this);
+            document.body.addEventListener('webkitAnimationStart', handler, false);
+            document.body.addEventListener('msAnimationStart', handler, false);
+            document.body.addEventListener('oAnimationStart', handler, false);
+            document.body.addEventListener('animationstart', handler, false);
+            this.addAnimations();
+        }
+    };
+    new A().init();
+})();
+}
+// 20140730
+(function cnbeta() {
+    if (document.URL.indexOf('cnbeta.com') >= 0) {
+        var elms = document.body.querySelectorAll("p>embed");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.style.marginLeft = "0px";
+        });
+    }
+})();
+// 20140730
+(function kill_baidu() {
+    if (document.URL.indexOf('baidu.com') >= 0) {
+        var elms = document.body.querySelectorAll("#content_left>div[style='display:block !important'], #content_left>table[style='display:table !important']");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.removeAttribute("style");
+        });
+    }
+    window.setTimeout(kill_baidu, 400);
+})();
+// 20140928
+(function v_baidu() {
+    if (document.URL.match(/http:\/\/baidu.*fr=/)) {
+        var child = document.body.querySelector('div.bd>script');
+        child.parentNode.removeChild(child);
+        advTimer.last = 1;
+        advTimer.cur = 1;
+        advTimer.onbeforestop();
+    }
+})();
+// 20140922
+(function kill_360() {
+    if (document.URL.indexOf('so.com') >= 0) {
+        document.getElementById("e_idea_pp").style.display = none;
+    }
+})();
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style></head>
+<body>
+<div id="OSC_Screen">
+	<style type="text/css">
+    #OSC_Banner {margin: 0 auto;text-align: left;margin-bottom: 5px;height:30px;border-top:0px;}
+    #OSC_Banner a {text-decoration: none;color: #fff;}
+    #OSC_Banner .cs_content a {color: #080;}
+    #OSC_Banner a:hover {color: #eee;}
+	#OSC_Banner a.project{background-color:transparent;}
+    #OSC_Banner #OSC_Channel {float: left;height:30px;}
+    #OSC_Banner #OSC_Channel ul {line-height: 18px;}
+    #OSC_Banner #OSC_Channel ul li.item {float: left;margin: 0 16px 0 0;line-height: 30px;}
+    #OSC_Banner #OSC_Channel ul li a.hl {font-weight: bold;}
+    #OSC_Banner #OSC_Userbar {float: right;	color: #ddd;line-height:30px;margin-right:10px;}
+    #OSC_Banner #OSC_Userbar em {font-style: normal;color: #fff;margin-right: 2px;}
+	/*下拉菜单*/
+	#OSC_Banner .control_select {position: relative;background: url('/img/down3.gif') no-repeat right 14px;padding-right: 8px;cursor: pointer;height: 25px;display: inline-block;z-index: 1001;}
+	#OSC_Banner .control_select a {position: relative;}
+	#OSC_Banner .control_select ul.cs_content {display: none;text-align: left;position: absolute;left: 0px;top: 25px;width: 110px;z-index: 9999;background: white;padding: 5px 0 2px 5px;font-size: 9pt;list-style-type: none;}
+	#OSC_Banner .control_select ul.cs_content li {border: 0;height: 16px;line-height: 16px;margin-bottom: 8px;}
+	#OSC_Banner .control_select ul.cs_content li a:hover {font-weight: bold;background: #fff;color: #A00}
+	#OSC_Banner .group_msg_count {display: inline-block;	padding: 2px;border-radius: 3px;background-color: RGB(255, 113, 112);color: white;font-size: 12px;height: 10px;text-align: center;
+		line-height: 10px;min-width: 15px;box-shadow: 1px 1px 1px RGBA(0, 0, 0, 0.2);-webkit-box-shadow: 1px 1px 1px RGBA(0, 0, 0, 0.2);-moz-box-shadow: 1px 1px 1px RGBA(0, 0, 0, 0.2);}
+	.tip-yellowsimple .tip-arrow-top{left:80%;}
+</style>
+<script type="text/javascript">
+  	g_user = {
+	id:0,
+	name:'',
+	login:false};</script>
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/utils.js"></script>
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/channel.js"></script>
+<div id="OSC_Banner">
+        <div id="OSC_Channel" style="float:left;margin-left:10px;">
+        	<ul>
+        	<li class="item"><a href="http://www.oschina.net/" class="home">首页</a></li>        	<li class="item control_select"><a href="http://www.oschina.net/project" class="project">开源项目</a>
+				<ul class="cs_content">					
+                	                	<li><a href="http://www.oschina.net/project/lang/19/java">Java 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/194/csharp">C# 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/22/php">PHP 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/21/c">C/C++ 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/26/ruby">Ruby 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/25/python">Python 开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/358/go">Go开源软件</a></li>
+                	<li><a href="http://www.oschina.net/project/lang/28/javascript">JS开源软件</a></li>
+				</ul>
+			</li>
+        	<li class="item control_select">
+				<a href="http://www.oschina.net/question" class="question">问答</a>				
+				<ul class="cs_content">					
+                	<li><a href="http://www.oschina.net/question?catalog=1"> 技术问答 » </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=2"> 技术分享 » </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=3"> IT大杂烩 » </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=100"> 职业生涯 » </a></li>
+                	<li><a href="http://www.oschina.net/question?catalog=4"> 站务/建议 » </a></li>
+                	<li><a href="http://www.oschina.net/alipay"> 支付宝专区 » </a></li>
+                	<li><a href="http://www.oschina.net/hardware"> 开源硬件专区 » </a></li>
+				</ul>
+			</li>
+        	<li class="item"><a href="http://www.oschina.net/code/list" class="code">代码</a></li>
+        	        	<li class="item"><a href="http://www.oschina.net/blog" class="blog">博客</a></li>
+        	<li class="item"><a href="http://www.oschina.net/translate" class="tran">翻译</a></li>
+            <li class="item"><a href="http://www.oschina.net/news" class="news">资讯</a></li>
+        	<li class="item control_select">
+				<a href="http://www.oschina.net/android" class="mobile">移动开发</a>
+				<ul class="cs_content cs_mobile">
+                	<li class="android_"><a href="http://www.oschina.net/android">Android开发专区</a></li>
+                	<li class="ios_"><a href="http://www.oschina.net/ios/home">iOS开发专区</a></li>
+                	<li class="ios_"><a href="http://www.oschina.net/ios/codingList">iOS代码库</a></li>
+                	<li class="wp7_"><a href="http://www.oschina.net/wp">Windows Phone</a></li>
+				</ul>
+			</li>
+        	<li class="item t_job"><a href="http://www.oschina.net/job" class="job">招聘</a></li>
+									            <li class="item control_select">
+                <a href="http://city.oschina.net/" id="MyCities" title="城市圈">城市圈</a>
+							</li>
+        	</ul>
+        </div>
+		<div id="OSC_Userbar">
+                		    		当前访客身份：游客 [ <a href="http://www.oschina.net/home/login?goto_page=http%3A%2F%2Fmy.oschina.net%2Fu%2F1171837%2Fblog%2F147544">登录</a> | <a href="http://www.oschina.net/home/reg">加入开源中国</a> ]
+    				</div>
+		<div class="clear"></div>
+</div>	<div id="OSC_Topbar">
+		<div id="VisitorInfo">
+		当前访客身份：
+				游客 [ <a href="http://www.oschina.net/home/login?goto_page=http%3A%2F%2Fmy.oschina.net%2Fu%2F1171837">登录</a> | <a href="http://www.oschina.net/home/reg">加入开源中国</a> ]
+				
+		</div>
+		<div id="SearchBar">
+    		<form action="http://www.oschina.net/search">
+				<input type="hidden" name="user" value="1171837">
+																<span class="ipt f_l">
+    			<input type="text" id="txt_q" name="q" class="SERACH" value="在 33759 款开源软件中搜索" onblur="(this.value==&#39;&#39;)?this.value=&#39;在 33759 款开源软件中搜索&#39;:this.value" onfocus="if(this.value==&#39;在 33759 款开源软件中搜索&#39;){this.value=&#39;&#39;;};this.select();">
+				</span>
+				                <div class="search-by selectbox">
+    				<span class="hide">
+    				<select name="scope">					
+                        <option value="project" selected="">软件</option>
+                        <option value="code">代码</option>
+                        <option value="bbs">讨论区</option>
+                        <option value="news">新闻</option>
+                        <option value="blog">博客</option>
+    				</select>
+    				</span>
+                  <div class="search_on" id="search-item"><span class="text">软件</span></div>
+                  <ul class="search_list" style="display: none;">
+                     <li class="search-item"><a href="http://my.oschina.net/u/1171837/blog/147544#1">软件</a></li>
+                     <li><a href="http://my.oschina.net/u/1171837/blog/147544#2">代码</a></li>
+                     <li><a href="http://my.oschina.net/u/1171837/blog/147544#3">讨论区</a></li>
+                     <li><a href="http://my.oschina.net/u/1171837/blog/147544#4">新闻</a></li>
+                     <li><a href="http://my.oschina.net/u/1171837/blog/147544#5">博客</a></li>
+                  </ul>
+                </div>
+				<input type="submit" value="搜索" class="bnt f_r">			
+    		</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="OSC_Content">					
+<style>
+	.icon{width:20px;height:20px;vertical-align: middle;display:inline-block;font-size:14px;text-align:center;color:#FFF;font-weight: bold;}
+	.catalogs{padding:0px;margin:0px;position:relative;display:inline-block;}
+    .catalogs ul{padding:0px;margin:0px;position:absolute;left:-8px;top: -21px;clear:left;width:120px;height:14px;overflow:hidden;background:#FFF;z-index:1000;padding:5px;border:1px solid #FFF;}
+    .catalogs ul:hover{height:auto;background:#fff;border:1px solid #4466bb;}
+    .catalogs ul li a:hover{color:#A00;font-weight: bold;}
+	.BlogStat a:hover{background:#FFF;}
+	.BlogStat{font-size:12px;line-height:20px;}
+	.BlogStat .g{color:#40AA53}
+	.BlogTags{margin-top:8px;}
+		.BlogAbstracts{}
+</style>
+<div id="SpaceLeft">
+<div class="Owner">
+	    <a href="http://my.oschina.net/u/1171837" class="Img"><img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/1171837_100.jpg" align="absmiddle" alt="wyouflf" title="wyouflf" class="LargePortrait"></a>
+    <span class="U">
+                    <a href="http://my.oschina.net/u/1171837" class="Name" title="男">wyouflf</a>
+        		<span class="opts">
+			<img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/men.png" align="absmiddle" title="男">
+        			<script type="text/javascript">
+var nologin = "<a href='javascript:_follow_nologin()' title='成为TA的粉丝'>关注此人</a>"
+var follow0 = "<a href='javascript:_follow_user(1171837,true)' title='成为TA的粉丝'>关注此人</a>";
+var follow1 = "已关注 | <a href='javascript:_follow_user(1171837,false)' title='取消关注后，此人的更新信息将不会出现在你的首页'>取消</a>";
+var follow2 = "互相关注 | <a href='javascript:_follow_user(1171837,false)' title='取消关注后，此人的更新信息将不会出现在你的首页'>取消</a>";
+var follow4 = "<a href='javascript:_follow_user(1171837,true)' title='成为TA的粉丝'>+关注此人</a>";
+
+document.write("<span id='_follow_1171837_action_'>");
+	document.write(nologin);
+document.write("</span>");
+
+function _follow_nologin(){
+	if(confirm('必须登录后才能关注，是否现在登录？')){
+		location.href="http://www.oschina.net/home/login?goto_page="+location.href;
+	}
+}
+
+function _follow_user(uid, follow){
+	var action = follow?"/action/user/follow":"/action/user/unfollow";
+	ajax_post(action,"id="+uid+"&user=${g_user.id}",function(result){
+		var act = $('#_follow_1171837_action_');
+		if(result == '0')
+			_follow_nologin();
+		else if(result == '1')
+			act.html(follow0);
+		else if(result == '2')
+			act.html(follow1);
+		else if(result == '3')
+			act.html(follow2);
+		else if(result == '4')
+			act.html(follow4);
+	});
+}
+</script><span id="_follow_1171837_action_"><a href="javascript:_follow_nologin()" title="成为TA的粉丝">关注此人</a></span>				</span>
+    </span>
+    <div class="clear"></div>
+    <div class="stat">
+    	<a href="http://my.oschina.net/u/1171837/fellow">关注<span>(2)</span></a>
+    	<a href="http://my.oschina.net/u/1171837/fans">粉丝<span>(144)</span></a>
+    	<a href="http://www.oschina.net/question/3307_20931" title="查看OSCHINA积分规则">积分<span>(197)</span></a>
+                       
+    </div>
+</div>    	<div class="Medals clearfix">
+        <ul id="Medals">
+                    <li>
+                <a class="clearfix" href="http://my.oschina.net/u/1171837/admin/medals" medalid="22" title="开源项目作者">
+                    <img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/slogo1392107698619.png" alt="开源项目作者" width="24" height="24" title="开源项目作者">
+                </a>
+            </li>
+                </ul>
+	</div>
+	<style type="text/css">
+    #Medals {margin-left: 3px; height: 28px;}
+    #Medals li {float: left;margin: 3px 5px;line-height: 24px;}
+    .tip-yellowsimple-medal {
+        z-index: 1000;
+        text-align: left;
+        border: 1px solid #E6DEB6;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        padding: 6px 8px;
+        min-width: 50px;
+        max-width: 300px;
+        color: #000;
+        background-color: #FFFEF2;
+    }
+	.tip-yellowsimple-medal .tip-arrow-left {
+		visibility: inherit;
+        margin-top: -4px;
+        margin-left: -6px;
+        top: 15px;
+        left: 0;
+        width: 6px;
+        height: 9px;
+        background: url(/js/2012/poshytip/tip-yellowsimple/tip-yellowsimple_arrows.gif?t=1377425775000) no-repeat -27px 0;
+	}
+	div.tip-yellowsimple-medal div.tip-arrow {
+        visibility: hidden;
+        position: absolute;
+        overflow: hidden;
+        font: 1px/1px sans-serif;
+	}
+</style>
+<script type="text/javascript">
+    $(function(){
+        $('#Medals a').poshytip({
+            className: 'tip-yellowsimple-medal',
+            alignTo: 'target',
+            alignX: 'right',
+            alignY: 'bottom',
+            offsetX: 10,
+            offsetY: -30,
+            fade: false,
+            slide: false,
+            content: function(updateCallback) {
+                ajax_get("/action/ajax/get_medal_detail?owner=1171837&medalId="+$(this).attr('medalId')+"&time="+new Date().getTime(),false,function(html){
+                    updateCallback(html);
+                    if($('.tip-arrow.tip-arrow-left').last().offset().top >= temp.offset().top) {
+                        $('.tip-arrow.tip-arrow-left').last().css({top : "15px"});
+                    }
+                    else {
+                        $('.tip-arrow.tip-arrow-left').last().css({top : "135px"});
+                    }
+                });
+                temp = $(this);
+                return "<div style='height:100px;'>Loading...</div>";
+            }
+        });
+    });
+</script>
+<style>
+#MyResume textarea {width:170px;height:60px;font-size:9pt;}
+</style>
+<div class="Resume" id="MyResume">
+install cdrom-detect/try-usb=true</div>
+
+<div class="Opts clearfix">
+	<a href="javascript:sendmsg(1171837, 0)" class="a1 sendmsg"><i>.</i><span>发送留言</span></a>
+	<a href="http://www.oschina.net/question/ask?user=1171837" class="a2 ask"><i>.</i><span>请教问题</span></a>
+</div><div class="Mod" id="BlogCatalogs">
+  <strong> 博客分类</strong>
+  <ul>
+	    	<li><a href="http://my.oschina.net/u/1171837/blog?catalog=358926">工作日志</a><span>(14)</span></li>
+		<li><a href="http://my.oschina.net/u/1171837/blog?catalog=358927">日常记录</a><span>(0)</span></li>
+		<li><a href="http://my.oschina.net/u/1171837/blog?catalog=358928">转贴的文章</a><span>(0)</span></li>
+	  </ul>
+</div><div class="Mod" id="HotBlogs">
+  <strong>阅读排行</strong>
+  <ol>
+			<li><a href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区.html">1. xUtils - android工具库， afinal的替代品</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/155377">2. Android 插件框架 xCombine 开发思路简介</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/170114">3. ubuntu 13.10 64位 安装WineQQ2012缺少ia32-lib的解决方法</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/149228">4. xUtils - android工具库，大量更新：bug修复，缓存优化，GET请求加入lru缓存。</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/139962">5. Android 插件框架 xCombine</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/156412">6. Android快速开发工具库xUtils 1.0发布，针对混淆优化，orm，view注解......</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/161301">7. 如何解决ADT17下Android第三方jar包NoClassDefFoundError的错误</a></li>
+				<li><a href="http://my.oschina.net/u/1171837/blog/148301">8. XXTEA加密算法 -- 高效加密解密 JAVA C# 兼容版</a></li>
+		  </ol>
+</div>
+<div class="Mod" id="BlogReplies">
+  <strong> 最新评论</strong>  
+      <ul>
+		<li>
+		<a href="http://my.oschina.net/u/1788673">@哈哈123132123</a>：楼主，外键支持 [on delete restrict] [on updat...
+		<a href="http://my.oschina.net/action/tweet/go?obj=283052752&type=18&user=1788673">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/tcstory">@花瓣奶牛</a>：好吧，我的ubuntu 14.04 64bit 用你的方法解决了...
+		<a href="http://my.oschina.net/action/tweet/go?obj=281136761&type=18&user=1039981">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/u/1049064">@李云汉</a>：膜拜一下，非常好用
+		<a href="http://my.oschina.net/action/tweet/go?obj=281130547&type=18&user=1049064">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/u/566309">@bineanzhou</a>：插件里有没有办法是用activity或者service呢？...
+		<a href="http://my.oschina.net/action/tweet/go?obj=280583012&type=18&user=566309">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/jsx112">@风云无限</a>：有没有更详细的文档说明呢？
+		<a href="http://my.oschina.net/action/tweet/go?obj=280133249&type=18&user=112680">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/freestyletime">@夲仒無道</a>：支持~
+		<a href="http://my.oschina.net/action/tweet/go?obj=278520830&type=18&user=250247">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/lirizhi">@a_lee</a>：博主有开QQ群讨论吗？
+		<a href="http://my.oschina.net/action/tweet/go?obj=278390955&type=18&user=855190">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/u/729744">@gaolei_oschina</a>：那个BitmapUtils有没有跟ImageLoader一样加载圆角...
+		<a href="http://my.oschina.net/action/tweet/go?obj=277852307&type=18&user=729744">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/u/1171837">@wyouflf</a>：引用来自“wangsm”的评论 您好，支持多表操作吗...
+		<a href="http://my.oschina.net/action/tweet/go?obj=277090918&type=18&user=1171837">查看»</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/u/1171837">@wyouflf</a>：引用来自“wangsm”的评论 您好，支持多表操作吗...
+		<a href="http://my.oschina.net/action/tweet/go?obj=277090838&type=18&user=1171837">查看»</a>
+	</li>
+	  </ul>
+  </div>
+<div class="Mod" id="Stat">
+<strong>访客统计</strong>
+<ul>
+	<li><label>今日访问：</label>18</li>
+    <li><label>昨日访问：</label>30</li>
+    <li><label>本周访问：</label>178</li>
+    <li><label>本月访问：</label>776</li>
+    <li><label>所有访问：</label>14312</li>
+</ul>
+</div></div>
+
+<div class="SpaceList">
+	<div class="TopBar">
+    	<div class="NavPath">		
+    		<a href="http://my.oschina.net/u/1171837">空间</a> » <a href="http://my.oschina.net/u/1171837/blog">博客</a>			
+			» 
+						<span class="catalogs">
+    			<ul>
+    										<li><a href="http://my.oschina.net/u/1171837/blog?catalog=358926">工作日志</a></li>
+					        			        				    				        				<li><a href="http://my.oschina.net/u/1171837/blog?catalog=358927">日常记录</a></li>    				        				<li><a href="http://my.oschina.net/u/1171837/blog?catalog=358928">转贴的文章</a></li>    				    				        				<li><a href="http://my.oschina.net/u/1171837/blog">所有分类</a></li>
+    				    			</ul>
+			</span>
+    	</div>
+	</div>
+	
+    	<div class="BlogEntity">		
+      <div class="BlogTitle">
+        <h1><span class="icon" style="background:#44ac57;" title="原创博客">原</span>			<span class="icon" style="background:#fd9c47;" title="首页推荐过的博客">荐</span>			<span class="icon" style="background:#fd6245;" title="个人博客列表置顶博客">顶</span>									xUtils - android工具库， afinal的替代品</h1>
+        <div class="BlogStat">
+    		    		发表于1年前(2013-07-27 21:08)&nbsp;&nbsp;
+    		阅读（<span class="g">6671</span>）&nbsp;|&nbsp;评论（<a href="http://my.oschina.net/u/1171837/blog/147544#comments"><span class="g">27</span></a>）
+    					    	    <span class="admin">
+				<style>
+#TagsSwitcher{color:#A00;}
+#RecTags,#MyTags{margin:5px 0;}
+#RecTags a.tag{line-height:24px;}
+#favor_form p:first-child{margin:5px 0;}
+#favor_form{width:200px;}
+#favor_form p {color:#666;}
+#favor_form form{min-height: 85px;width:200px;}
+#favor_form form ._favor_input{display:block;margin:2px 0;width:199px;}
+#favor_form form ._favor_button{float:left;padding:2px 5px;}
+.favor_ok {text-align:center;font-size:10.5pt;width:199px;height:60px;margin-top:10px;}
+#TagsSwitcher{cursor:pointer;float:right;margin-top:10px;}
+#MyTags{display:none;width:199px;}
+#MyTags a.tag {float:left; background-color: #E0EAF1;border-bottom: 1px solid #3E6D8E;border-right: 1px solid #7F9FB6;color: #3E6D8E;font-size: 8pt;line-height: 16px;margin: 2px 2px 2px 0;padding: 2px 4px;text-decoration: none;white-space: nowrap;}
+#MyTags a.tag:hover{background-color: #3E6D8E;color: #FFF;}
+</style>
+<script type="text/javascript">
+var favor_add = "<a href='javascript:add_to_favor(147544,3)' id='favor_trigger' title='添加到收藏夹'>我要收藏</a>";
+var favor_del = "<a href='javascript:delete_favor(147544,3)' id='favor_trigger' style='color:#a00;'>取消收藏</a>";
+var favor_ok = "<p class='favor_ok'>已成功添加到收藏夹<br/><br/> <a href='null/favorites?type=3'>我的收藏夹</a> | <a href='javascript:close_favor()'>关闭</a></p>";
+function delete_favor(obi_id, obj_type){
+	$('#attention_it').html(favor_add);
+	$("#p_attention_count").load("/action/favorite/cancel?type="+obj_type+"&id="+obi_id, {user: ''});
+}
+function add_to_favor(obj_id, obj_type){
+	if(confirm('必须登录后才能收藏，是否现在登录？')){
+		location.href="http://www.oschina.net/home/login?goto_page="+encodeURIComponent(location.href);
+	}
+}
+function close_favor(elem_id){
+    $('#favor_trigger').poshytip('destroy');
+}
+function setTag(tv){
+	var t = $("._favor_input");
+	var value = t.val();
+	var tags = value.replace(/，/ig,',').split(',');
+	var exist = false;
+	value = $.map(tags,function(v,i){
+		if($.trim(tv) == $.trim(v)){
+			exist = true;
+			return undefined;
+		}
+		return v;
+	}).join(',');
+	if(exist){
+		t.val(value);
+		return;
+	}
+	if(value!="")
+		t.val(value+","+tv);
+	else
+		t.val(tv)
+}
+function ltrim(str){
+    var whitespace = new String(" \t\n\r");
+    var s = new String(str);
+    if (whitespace.indexOf(s.charAt(0)) != -1){
+        var j=0, i = s.length;
+        while (j < i && whitespace.indexOf(s.charAt(j)) != -1){
+            j++;
+        }
+        s = s.substring(j, i);
+    }
+    return s;
+}
+
+function rtrim(str){
+    var whitespace = new String(" \t\n\r");
+    var s = new String(str);
+    if (whitespace.indexOf(s.charAt(s.length-1)) != -1){
+        var i = s.length - 1;
+        while (i >= 0 && whitespace.indexOf(s.charAt(i)) != -1){
+            i--;
+        }
+        s = s.substring(0, i+1);
+    }
+    return s;
+}
+ 
+function trim(str){
+    return rtrim(ltrim(str));
+}
+</script>
+<em id="p_attention_count">137</em>人收藏此文章,
+<span id="attention_it">
+	<script type="text/javascript">document.write(favor_add);</script><a href="javascript:add_to_favor(147544,3)" id="favor_trigger" title="添加到收藏夹">我要收藏</a>
+</span>
+<script type="text/javascript">
+	$(document).ready(function(){
+    	$.ajax({
+    		url:"/action/favorite/attentionUsersCount",
+    		type:"get",
+    		data:"id="+147544+"&type="+3,
+    		success:function(msg){
+				$("#p_attention_count").html(msg);
+    		}
+    	});
+	});
+</script>			</span>
+			    	</div>
+		<div class="tvote" onclick="vote(147544)" title="都有4个人赞过了，你也来赞一下吧！不会扣积分哦！"><em class="vote">赞</em><em class="num vote_count">4</em></div>
+      </div>
+	  	  <p style="margin:0 0 10px 0;"><a style="color:#A00;font-weight:bold;" href="http://city.oschina.net/changsha/event/213512" target="_blank">1月10日 #长沙# OSC 源创会第32期开始报名</a></p>
+	  	  <a name="kindeditor"></a>
+	            <div class="BlogAbstracts">
+						           <div class="BlogTags">
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=xUtils" class="tag">xUtils</a>
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=afinal" class="tag">afinal</a>
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=android" class="tag">android</a>
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=orm" class="tag">orm</a>
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=ioc" class="tag">ioc</a>
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=bitmap" class="tag">bitmap</a>
+        	        	<a href="http://www.oschina.net/search?scope=blog&q=http" class="tag">http</a>
+        	           </div>
+		   		  </div><br>
+	  	  	  <div class="BlogContent"><p> <br> </p> 
+<p> 之前因为不喜欢afinal的一些api设计，自己fork了一个分支做修改。 </p> 
+<p> 后来越修越来越多，很多结构性的重构，尤其是http和view注入模块几乎彻底改造，还有更加符合语义的orm查询表达式... 导致无法合并原分支一些新增的修改。所以最近重新建了一个库叫做xUtils. &nbsp;顾名思义，它是一个工具库。 </p> 
+<p> <br> </p> 
+<p> <span style="color:#333333;font-family:Helvetica, arial, freesans, clean, sans-serif;font-size:2em;line-height:1.5;">xUtils简介</span> </p> 
+<ul> 
+ <li> xUtils 包含了很多实用的android工具，让你的开发过程更高效。 </li> 
+ <li> xUtils 源于Afinal框架，对Afinal进行了大量重构，使得xUtils支持大文件上传，更全面的http请求协议支持，拥有更加灵活的ORM，更多的事件注解支持且不受混淆影响... </li> 
+</ul> 
+<h2> <strong>目前x</strong><strong>Utils主要有四大模块：</strong> </h2> 
+<ul> 
+ <li> <p> DbUtils模块： </p> 
+  <blockquote> 
+   <ul> 
+    <li> android中的orm框架，一行代码就可以进行增删改查； </li> 
+    <li> 支持事务，默认关闭； </li> 
+    <li> 可通过注解自定义表名，列名，外键，唯一性约束，NOT NULL约束，CHECK约束等（需要混淆的时候请注解表名和列名）； </li> 
+    <li> 支持绑定外键，保存实体时外键关联实体自动保存或更新； </li> 
+    <li> 自动加载外键关联实体，支持延时加载； </li> 
+    <li> 支持链式表达查询，更直观的查询语义，参考下面的介绍或Demo中的例子。 </li> 
+   </ul> 
+  </blockquote> </li> 
+ <li> <p> ViewUtils模块： </p> 
+  <blockquote> 
+   <ul> 
+    <li> android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定； </li> 
+    <li> 新的事件绑定方式，使用混淆工具混淆后仍可正常工作； </li> 
+    <li> 目前支持常用的11种事件绑定，参见ViewCommonEventListener类和包com.lidroid.xutils.view.annotation.event。 </li> 
+   </ul> 
+  </blockquote> </li> 
+ <li> <p> HttpUtils模块： </p> 
+  <blockquote> 
+   <ul> 
+    <li> 支持同步，异步方式的请求； </li> 
+    <li> 支持大文件上传，上传大文件不会oom； </li> 
+    <li> 支持GET，POST，PUT，MOVE，COPY，DELETE，HEAD请求； </li> 
+    <li> 下载支持301/302重定向； </li> 
+    <li> 返回文本内容的GET请求支持缓存，可设置默认过期时间和针对当前请求的过期时间。 </li> 
+   </ul> 
+  </blockquote> </li> 
+ <li> <p> BitmapUtils模块： </p> 
+  <blockquote> 
+   <ul> 
+    <li> 加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象； </li> 
+    <li> 支持加载网络图片和本地图片； </li> 
+    <li> 内存管理使用lru算法，更好的管理bitmap内存； </li> 
+    <li> 可配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等... </li> 
+   </ul> 
+  </blockquote> </li> 
+</ul> 
+<p> <span style="line-height:1.5;font-size:10pt;"></span> </p> 
+<p> <br> </p> 
+<p> <span></span><strong>使用方法，代码等见： </strong><a href="https://github.com/wyouflf/xUtils" rel="nofollow"><strong>https://github.com/wyouflf/xUtils</strong></a><span></span> </p> 
+<p> <br> </p> 
+<p> <br> </p></div>
+      	      	<div class="BlogShare">
+    	
+		<strong>分享到：</strong>
+		<a class="share_sina" title="分享到新浪微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=858381728',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','xUtils - android工具库， afinal的替代品: 之前因为不喜欢afinal的一些api设计，自己fork了一个分支做修改。 后来越修越来越多，很多结构性的重构，尤其是http和view注入模块几乎彻底改造，还有更加符合语义的orm...','','utf-8'));">
+			<img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/sinaweibo_fb1.png" height="29">
+		</a>
+		<a class="share_qq" title="分享到腾讯微博" href="javascript:(function(){window.open('http://v.t.qq.com/share/share.php?url='+encodeURIComponent(document.location)+'&appkey=96f54f97c4de46e393c4835a266207f4&site=&title='+encodeURIComponent(document.title)+encodeURIComponent(': 之前因为不喜欢afinal的一些api设计，自己fork了一个分支做修改。 后来越修越来越多，很多结构性的重构，尤其是http和view注入模块几乎彻底改造，还有更加符合语义的orm...'),'', 'width=450, height=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');}())">
+			<img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/tencent_weibo_fb.jpg" height="30">
+		</a>
+    	<span class="BlogVote" onclick="vote(147544)" title="都有4个人赞过了，你也来赞一下吧！不会扣积分哦！">
+			<span class="num vote_count">4</span><span class="vote">赞</span>
+		</span>
+	</div>
+      
+      <div class="BlogCopyright">		
+	  		声明：OSCHINA 博客文章版权属于作者，受法律保护。未经作者同意不得转载。
+	  	  </div>
+	  	  
+      <div class="BlogLinks">
+    	<ul>
+                <li class="prev"><a href="http://my.oschina.net/u/1171837/blog/140686" title="上一篇：[更新]Afinal 框架 wyouflf 修改版">« 上一篇</a></li>        <li class="next"><a href="http://my.oschina.net/u/1171837/blog/148278" title="下一篇：xUtils 更新--orm模块加入外键支持：外键自动保存，自动加载对象，支持延迟加载...">下一篇 »</a></li>    	</ul>
+      </div>
+	</div>
+		       <div style="margin:10px 0;">
+    	<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/blog.js"></script>
+      </div>
+      </div>
+<!-------------------------------------------------------->
+<script type="text/javascript">
+    angular.module('blogComment', ['ngSanitize'])
+    .controller('ListComment', 
+    function($scope, $http,$filter){
+            var url = "/action/blog/listComment?blog=147544&page=1&size=10";
+            $http({method: 'GET', url: url}).success(function(data) {$scope.commentjsons = data;});
+            $scope.totalComment = 27;
+            $scope.currentPage=1;
+            $scope.pageSize=10;
+            $scope.totalPage=Math.ceil($scope.totalComment/$scope.pageSize);
+            if($scope.currentPage>3){
+            	$scope.beginIndex = $scope.currentPage - 3;
+            }else{
+            	$scope.beginIndex = 1;
+            }
+            $scope.endIndex = $scope.beginIndex + 9;
+            if($scope.endIndex>$scope.totalPage){
+            	$scope.endIndex = $scope.totalPage;
+            }
+			var pages = new Array();
+			var index=0;
+			for(var i=$scope.beginIndex;i<=$scope.endIndex;i++){
+				pages[index]=i;
+				index++;
+			}
+			$scope.pages = pages;
+        $scope.delete_c = function(nid,uid,cid){
+        	delete_c(nid,uid,cid);
+        };
+        	$scope.ReplyInline = function(blog,user,relpy){
+        ReplyInline(blog,user,relpy);
+        };
+	});
+</script>
+<div class="SpaceList ng-scope" style="margin-top:20px;" ng-app="blogComment" ng-controller="ListComment">
+<div class="BlogComments">
+  <h2><a name="comments"></a>评论<em ng-bind="totalComment" class="ng-binding">27</em></h2>
+  <ul id="BlogComments">
+      <!-- ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_12_274993077" ng-class="{&#39;even&#39;: 1 == 0}" class="ng-scope">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/12" target="_blank" href="http://my.oschina.net/u/12">
+				<img ng-src="http://static.oschina.net/uploads/user/0/12_50.jpg?t=1387864442000" align="absmiddle" title="红薯" class="SmallPortrait" user="12" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/12_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">1</span>楼：<a ng-href="http://my.oschina.net/u/12" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/12">红薯</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 06:49</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">已收录到 <a href="http://www.oschina.net/p/xutils" class="project" target="_blank" title="Android 工具包xUtils">xUtils</a></div>
+    		<div id="inline_reply_of_147544_12_274993077" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_1176102_274995590" ng-class="{&#39;even&#39;: 0 == 0}" class="ng-scope even">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/1176102" target="_blank" href="http://my.oschina.net/u/1176102">
+				<img ng-src="http://static.oschina.net/uploads/user/588/1176102_50.jpg?t=1416367641000" align="absmiddle" title="IceHermes" class="SmallPortrait" user="1176102" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/1176102_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">2</span>楼：<a ng-href="http://my.oschina.net/u/1176102" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/1176102">IceHermes</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 10:19</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">学习了,之前一直用afinal</div>
+    		<div id="inline_reply_of_147544_1176102_274995590" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_129590_274995632" ng-class="{&#39;even&#39;: 1 == 0}" class="ng-scope">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/129590" target="_blank" href="http://my.oschina.net/u/129590">
+				<img ng-src="http://static.oschina.net/uploads/user/64/129590_50.jpg?t=1414036625000" align="absmiddle" title="石头哥哥" class="SmallPortrait" user="129590" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/129590_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">3</span>楼：<a ng-href="http://my.oschina.net/u/129590" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/129590">石头哥哥</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="3">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) --><span ng-if="(commentjson.client_type==3)" "="" class="ng-scope">Android</span><!-- end ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 10:22</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">支持！！！ </div>
+    		<div id="inline_reply_of_147544_129590_274995632" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_111634_274997365" ng-class="{&#39;even&#39;: 0 == 0}" class="ng-scope even">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/111634" target="_blank" href="http://my.oschina.net/u/111634">
+				<img ng-src="http://static.oschina.net/uploads/user/55/111634_50.jpg?t=1414374101000" align="absmiddle" title="michaely" class="SmallPortrait" user="111634" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/111634_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">4</span>楼：<a ng-href="http://my.oschina.net/u/111634" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/111634">michaely</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 12:47</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">支持下 </div>
+    		<div id="inline_reply_of_147544_111634_274997365" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_1171837_274997419" ng-class="{&#39;even&#39;: 1 == 0}" class="ng-scope">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/1171837" target="_blank" href="http://my.oschina.net/u/1171837">
+				<img ng-src="http://static.oschina.net/uploads/user/585/1171837_50.jpg?t=1371957136000" align="absmiddle" title="wyouflf" class="SmallPortrait" user="1171837" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/1171837_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">5</span>楼：<a ng-href="http://my.oschina.net/u/1171837" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/1171837">wyouflf</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 12:51</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content"><div class="ref"><h4>引用来自“michaely”的评论</h4><p>支持下 </p></div>大哥 有你支持我就激动了 哈哈 之前一直想联系你说说我的想法 没找到联系方式啊</div>
+    		<div id="inline_reply_of_147544_1171837_274997419" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_94055_274997719" ng-class="{&#39;even&#39;: 0 == 0}" class="ng-scope even">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/94055" target="_blank" href="http://my.oschina.net/u/94055">
+				<img ng-src="http://static.oschina.net/uploads/user/47/94055_50.jpg?t=1368438906000" align="absmiddle" title="atearsan" class="SmallPortrait" user="94055" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/94055_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">6</span>楼：<a ng-href="http://my.oschina.net/u/94055" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/94055">atearsan</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 13:16</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">加油哈  不错</div>
+    		<div id="inline_reply_of_147544_94055_274997719" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_1171900_275002811" ng-class="{&#39;even&#39;: 1 == 0}" class="ng-scope">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/1171900" target="_blank" href="http://my.oschina.net/u/1171900">
+				<img ng-src="http://static.oschina.net/uploads/user/585/1171900_50.jpg?t=1385344084000" align="absmiddle" title="爱梅行者" class="SmallPortrait" user="1171900" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/1171900_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">7</span>楼：<a ng-href="http://my.oschina.net/u/1171900" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/1171900">爱梅行者</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 20:20</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">顶</div>
+    		<div id="inline_reply_of_147544_1171900_275002811" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_1171837_275002996" ng-class="{&#39;even&#39;: 0 == 0}" class="ng-scope even">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/1171837" target="_blank" href="http://my.oschina.net/u/1171837">
+				<img ng-src="http://static.oschina.net/uploads/user/585/1171837_50.jpg?t=1371957136000" align="absmiddle" title="wyouflf" class="SmallPortrait" user="1171837" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/1171837_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">8</span>楼：<a ng-href="http://my.oschina.net/u/1171837" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/1171837">wyouflf</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-28 20:36</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content"><div class="ref"><h4>引用来自“红薯”的评论</h4><p>已收录到 <a href="http://www.oschina.net/p/xutils" class="project" target="_blank" title="Android 工具包xUtils">xUtils</a></p></div>谢谢红薯</div>
+    		<div id="inline_reply_of_147544_1171837_275002996" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_3504_275005917" ng-class="{&#39;even&#39;: 1 == 0}" class="ng-scope">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/3504" target="_blank" href="http://my.oschina.net/u/3504">
+				<img ng-src="http://static.oschina.net/uploads/user/1/3504_50.jpg?t=1406771892000" align="absmiddle" title="李斌.北界.upsilon" class="SmallPortrait" user="3504" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/3504_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">9</span>楼：<a ng-href="http://my.oschina.net/u/3504" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/3504">李斌.北界.upsilon</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-29 00:39</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content">囧.前几天才clone下来进行改写view的annotation方案..没想到你已经update到我的想法了.索性连类名都一样....ViewUtils....</div>
+    		<div id="inline_reply_of_147544_3504_275005917" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons --><li ng-repeat="commentjson in commentjsons" id="cmt_147544_1171837_275012787" ng-class="{&#39;even&#39;: 0 == 0}" class="ng-scope even">
+	<table class="ostable">
+	<tbody><tr>
+    	<td class="portrait">
+    		<a ng-href="http://my.oschina.net/u/1171837" target="_blank" href="http://my.oschina.net/u/1171837">
+				<img ng-src="http://static.oschina.net/uploads/user/585/1171837_50.jpg?t=1371957136000" align="absmiddle" title="wyouflf" class="SmallPortrait" user="1171837" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/1171837_50.jpg">
+			</a>
+    	</td>
+    	<td class="body">
+    		<div class="title">
+    			<span ng-bind="(currentPage-1)*pageSize+$index+1" class="ng-binding">10</span>楼：<a ng-href="http://my.oschina.net/u/1171837" target="_blank" name="147544" class="user ng-binding" ng-bind="commentjson.userName" href="http://my.oschina.net/u/1171837">wyouflf</a>
+				<!-- ngIf: (commentjson.client_type>10000 && commentjson.appApproved) -->
+				<span ng-switch="0">
+					<!-- ngIf: (commentjson.client_type==2) -->
+					<!-- ngIf: (commentjson.client_type==3) -->
+					<!-- ngIf: (commentjson.client_type==4) -->
+					<!-- ngIf: (commentjson.client_type==5) -->
+					<!-- ngIf: (commentjson.client_type==6) -->
+				</span>
+				发表于 <span ng-bind="commentjson.create_time" class="ng-binding">2013-07-29 10:12</span>
+				  <!-- ngIf: commentjson.canAdmin -->
+    			  <!-- ngIf: commentjson.canCommit --><a href="" ng-click="ReplyInline(commentjson.blogId, commentjson.userId, commentjson.commentId)" ng-if="commentjson.canCommit" class="ng-scope">回复此评论</a><!-- end ngIf: commentjson.canCommit -->
+    		</div>
+    		<div class="post ng-binding" ng-bind-html="commentjson.content"><div class="ref"><h4>引用来自“李斌.北界.upsilon”的评论</h4><p>囧.前几天才clone下来进行改写view的annotation方案..没想到你已经update到我的想法了.索性连类名都一样....ViewUtils....</p></div>哈哈 想到一块儿去了</div>
+    		<div id="inline_reply_of_147544_1171837_275012787" class="inline_reply"></div>
+        </td>
+	</tr>
+	</tbody></table>
+</li><!-- end ngRepeat: commentjson in commentjsons -->  </ul>
+</div>
+<ul class="pager">
+<!-- ngIf: (currentPage>1) --><!-- ngIf: (beginIndex>1) --><!-- ngRepeat: page in pages --><!-- ngIf: totalPage>1 --><li class="page ng-scope current" ng-if="totalPage&gt;1" ng-class="{current:true}" ng-repeat="page in pages"><a href="http://my.oschina.net/u/1171837/blog/147544?p=1#comments" ng-bind="page" class="ng-binding">1</a></li><!-- end ngIf: totalPage>1 --><!-- end ngRepeat: page in pages --><!-- ngIf: totalPage>1 --><li class="page ng-scope" ng-if="totalPage&gt;1" ng-class="{current:false}" ng-repeat="page in pages"><a href="http://my.oschina.net/u/1171837/blog/147544?p=2#comments" ng-bind="page" class="ng-binding">2</a></li><!-- end ngIf: totalPage>1 --><!-- end ngRepeat: page in pages --><!-- ngIf: totalPage>1 --><li class="page ng-scope" ng-if="totalPage&gt;1" ng-class="{current:false}" ng-repeat="page in pages"><a href="http://my.oschina.net/u/1171837/blog/147544?p=3#comments" ng-bind="page" class="ng-binding">3</a></li><!-- end ngIf: totalPage>1 --><!-- end ngRepeat: page in pages --><!-- ngIf: (endIndex<totalPage --><!-- ngIf: (currentPage<totalPage) --><li class="page next ng-scope" ng-if="(currentPage&lt;totalPage)"><a href="http://my.oschina.net/u/1171837/blog/147544?p=2#comments">&gt;</a></li><!-- end ngIf: (currentPage<totalPage) --></ul>
+</div>
+<!-------------------------------------------------------->
+
+
+<div id="inline_reply_editor" style="display:none;">
+<div class="BlogCommentForm">
+	<form id="form_inline_comment" action="http://my.oschina.net/action/blog/add_comment?blog=147544" method="POST">
+	  <input type="hidden" id="inline_reply_id" name="reply_id" value="">          
+      <textarea name="content" id="ccom_content" style="width:650px;height:60px;" onkeydown="if((event.metaKey || event.ctrlKey)&amp;&amp;event.keyCode==13){$(&#39;#form_inline_comment&#39;).submit();}"></textarea><br>
+	  <p>
+		  <span style="float:right;">
+    	  <input type="button" value="关闭" class="blg_submit_btn" id="btn_close_inline_reply" style="background: rgba(255,255,255,0);color: #555;">
+    	  <input type="submit" value="回复" id="btn_comment" class="blg_submit_btn"> 
+		  </span>
+		  插入：
+				<a href="javascript:;" onclick="javascript:insert_emotions(&#39;ccom_content&#39;,this);" class="blog_emotion">表情</a>
+				<a href="javascript:insert_projects_c();" class="blog_soft">开源软件</a>
+		 <span class="NoData" id="ficmp_msg" style="color:#F00"></span>
+	  </p>
+    </form>
+</div>
+</div>
+
+<div class="SpaceList" style="margin-top:20px;">
+  <a name="comments" id="postform"></a>
+      <div class="BlogCommentForm">
+        <form id="form_comment" action="http://my.oschina.net/action/blog/add_comment?blog=147544" method="POST">
+        	<div class="comment_portrait">
+        		<img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/portrait.gif" align="absmiddle" alt="wyouflf" title="wyouflf" class="LargePortrait">        	</div>
+        	<div class="comment_form">
+        		<textarea name="content" id="wmd-input" style="width:650px;height:80px;" placeholder=""></textarea>
+				<p>
+					<button type="submit" class="blg_submit_btn" style="float:right;">发表评论</button>
+					插入：
+					<a href="javascript:insert_emotions();" class="blog_emotion">表情</a>
+					<a href="javascript:insert_projects();" class="blog_soft">开源软件</a>
+					<span class="NoData" id="cmt_tip"></span>
+				</p>
+				<div id="TweetFormPopupWraper">
+					<div id="TweetFormPopupArrow">
+        				<div id="TweetFormPopup">
+                        	<div id="TweetEmotions">
+                            	<div class="TweetPopupTitle"><a href="javascript:;" onclick="$(&#39;#TweetFormPopupWraper&#39;).hide();return false;">关闭</a>插入表情</div>
+                            	                            	<a href="javascript:;" onclick="return ins_e(0);" class="emotion" style="background-position: -0px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(1);" class="emotion" style="background-position: -24px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(2);" class="emotion" style="background-position: -48px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(3);" class="emotion" style="background-position: -72px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(4);" class="emotion" style="background-position: -96px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(5);" class="emotion" style="background-position: -120px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(6);" class="emotion" style="background-position: -144px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(7);" class="emotion" style="background-position: -168px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(8);" class="emotion" style="background-position: -192px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(9);" class="emotion" style="background-position: -216px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(10);" class="emotion" style="background-position: -240px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(11);" class="emotion" style="background-position: -264px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(12);" class="emotion" style="background-position: -288px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(13);" class="emotion" style="background-position: -312px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(14);" class="emotion" style="background-position: -336px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(15);" class="emotion" style="background-position: -360px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(16);" class="emotion" style="background-position: -384px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(17);" class="emotion" style="background-position: -408px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(18);" class="emotion" style="background-position: -432px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(19);" class="emotion" style="background-position: -456px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(20);" class="emotion" style="background-position: -480px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(21);" class="emotion" style="background-position: -504px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(22);" class="emotion" style="background-position: -528px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(23);" class="emotion" style="background-position: -552px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(24);" class="emotion" style="background-position: -576px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(25);" class="emotion" style="background-position: -600px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(26);" class="emotion" style="background-position: -624px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(27);" class="emotion" style="background-position: -648px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(28);" class="emotion" style="background-position: -672px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(29);" class="emotion" style="background-position: -696px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(30);" class="emotion" style="background-position: -720px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(31);" class="emotion" style="background-position: -744px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(32);" class="emotion" style="background-position: -768px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(33);" class="emotion" style="background-position: -792px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(34);" class="emotion" style="background-position: -816px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(35);" class="emotion" style="background-position: -840px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(36);" class="emotion" style="background-position: -864px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(37);" class="emotion" style="background-position: -888px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(38);" class="emotion" style="background-position: -912px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(39);" class="emotion" style="background-position: -936px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(40);" class="emotion" style="background-position: -960px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(41);" class="emotion" style="background-position: -984px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(42);" class="emotion" style="background-position: -1008px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(43);" class="emotion" style="background-position: -1032px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(44);" class="emotion" style="background-position: -1056px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(45);" class="emotion" style="background-position: -1080px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(46);" class="emotion" style="background-position: -1104px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(47);" class="emotion" style="background-position: -1128px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(48);" class="emotion" style="background-position: -1152px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(49);" class="emotion" style="background-position: -1176px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(50);" class="emotion" style="background-position: -1200px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(51);" class="emotion" style="background-position: -1224px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(52);" class="emotion" style="background-position: -1248px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(53);" class="emotion" style="background-position: -1272px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(54);" class="emotion" style="background-position: -1296px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(55);" class="emotion" style="background-position: -1320px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(56);" class="emotion" style="background-position: -1344px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(57);" class="emotion" style="background-position: -1368px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(58);" class="emotion" style="background-position: -1392px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(59);" class="emotion" style="background-position: -1416px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(60);" class="emotion" style="background-position: -1440px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(61);" class="emotion" style="background-position: -1464px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(62);" class="emotion" style="background-position: -1488px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(63);" class="emotion" style="background-position: -1512px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(64);" class="emotion" style="background-position: -1536px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(65);" class="emotion" style="background-position: -1560px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(66);" class="emotion" style="background-position: -1584px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(67);" class="emotion" style="background-position: -1608px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(68);" class="emotion" style="background-position: -1632px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(69);" class="emotion" style="background-position: -1656px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(70);" class="emotion" style="background-position: -1680px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(71);" class="emotion" style="background-position: -1704px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(72);" class="emotion" style="background-position: -1728px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(73);" class="emotion" style="background-position: -1752px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(74);" class="emotion" style="background-position: -1776px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(75);" class="emotion" style="background-position: -1800px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(76);" class="emotion" style="background-position: -1824px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(77);" class="emotion" style="background-position: -1848px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(78);" class="emotion" style="background-position: -1872px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(79);" class="emotion" style="background-position: -1896px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(80);" class="emotion" style="background-position: -1920px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(81);" class="emotion" style="background-position: -1944px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(82);" class="emotion" style="background-position: -1968px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(83);" class="emotion" style="background-position: -1992px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(84);" class="emotion" style="background-position: -2016px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(85);" class="emotion" style="background-position: -2040px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(86);" class="emotion" style="background-position: -2064px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(87);" class="emotion" style="background-position: -2088px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(88);" class="emotion" style="background-position: -2112px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(89);" class="emotion" style="background-position: -2136px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(90);" class="emotion" style="background-position: -2160px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(91);" class="emotion" style="background-position: -2184px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(92);" class="emotion" style="background-position: -2208px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(93);" class="emotion" style="background-position: -2232px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(94);" class="emotion" style="background-position: -2256px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(95);" class="emotion" style="background-position: -2280px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(96);" class="emotion" style="background-position: -2304px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(97);" class="emotion" style="background-position: -2328px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(98);" class="emotion" style="background-position: -2352px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(99);" class="emotion" style="background-position: -2376px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(100);" class="emotion" style="background-position: -2400px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(101);" class="emotion" style="background-position: -2424px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(102);" class="emotion" style="background-position: -2448px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(103);" class="emotion" style="background-position: -2472px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(104);" class="emotion" style="background-position: -2496px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(105);" class="emotion" style="background-position: -2520px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(106);" class="emotion" style="background-position: -2544px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(107);" class="emotion" style="background-position: -2568px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(108);" class="emotion" style="background-position: -2592px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(109);" class="emotion" style="background-position: -2616px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(110);" class="emotion" style="background-position: -2640px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(111);" class="emotion" style="background-position: -2664px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(112);" class="emotion" style="background-position: -2688px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(113);" class="emotion" style="background-position: -2712px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(114);" class="emotion" style="background-position: -2736px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(115);" class="emotion" style="background-position: -2760px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(116);" class="emotion" style="background-position: -2784px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(117);" class="emotion" style="background-position: -2808px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(118);" class="emotion" style="background-position: -2832px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(119);" class="emotion" style="background-position: -2856px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(120);" class="emotion" style="background-position: -2880px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(121);" class="emotion" style="background-position: -2904px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(122);" class="emotion" style="background-position: -2928px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(123);" class="emotion" style="background-position: -2952px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(124);" class="emotion" style="background-position: -2976px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(125);" class="emotion" style="background-position: -3000px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(126);" class="emotion" style="background-position: -3024px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(127);" class="emotion" style="background-position: -3048px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(128);" class="emotion" style="background-position: -3072px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(129);" class="emotion" style="background-position: -3096px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(130);" class="emotion" style="background-position: -3120px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(131);" class="emotion" style="background-position: -3144px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(132);" class="emotion" style="background-position: -3168px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(133);" class="emotion" style="background-position: -3192px 0px;"></a>
+                            	                            	<a href="javascript:;" onclick="return ins_e(134);" class="emotion" style="background-position: -3216px 0px;"></a>
+                            	                            	<div class="clear"></div>
+                        	</div>
+        				</div>
+					</div>
+				</div>
+            </div>
+        </form>
+    </div>
+  </div>
+	
+<div id="RelativeBlogs">
+	<strong><a id="btn_close">关闭</a>相关文章阅读</strong>
+	<ul>
+			<li>
+		<span class="date">2013/08/11</span>
+		<a href="http://my.oschina.net/u/1171837/blog/152007" title="xUtils - 更新：链式表达查询，更具可读性android数据库查询。">xUtils - 更新：链式表达查询，更具...</a>
+	</li>
+				<li>
+		<span class="date">2013/08/01</span>
+		<a href="http://my.oschina.net/u/1171837/blog/149228" title="xUtils - android工具库，大量更新：bug修复，缓存优化，GET请求加入lru缓存。">xUtils - android工具库，大量更新：...</a>
+	</li>
+				<li>
+		<span class="date">2013/07/30</span>
+		<a href="http://my.oschina.net/u/1171837/blog/148278" title="xUtils 更新--orm模块加入外键支持：外键自动保存，自动加载对象，支持延迟加载...">xUtils 更新--orm模块加入外键支持：...</a>
+	</li>
+				<li>
+		<span class="date">2012/11/06</span>
+		<a href="http://my.oschina.net/yangfuhai/blog/87459" title="使用android快速开发框架afinal的FinalDb操作android数据库">使用android快速开发框架afinal的F...</a>
+	</li>
+				<li>
+		<span class="date">2013/10/31</span>
+		<a href="http://my.oschina.net/jack1900/blog/173286" title="xUtils框架的介绍">xUtils框架的介绍</a>
+	</li>
+			</ul>
+</div>
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/blog" defer="defer"></script>
+
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/xregexp-min.js"></script>
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/shCore.min.js"></script>
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/shAutoloader.js"></script>
+<link type="text/css" rel="stylesheet" href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/shThemeDefault.css">
+
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+            'applescript			/js/sh309/scripts/shBrushAppleScript.js?t=1406837068000',
+            'actionscript3 as3		/js/sh309/scripts/shBrushAS3.js?t=1406837068000',
+            'bash shell				/js/sh309/scripts/shBrushBash.js?t=1406837068000',
+            'coldfusion cf			/js/sh309/scripts/shBrushColdFusion.js?t=1406837068000',
+            'cpp c					/js/sh309/scripts/shBrushCpp.js?t=1406837068000',
+            'obj-c objc				/js/sh309/scripts/shBrushObjC.js?t=1406837068000',
+            'c# c-sharp csharp		/js/sh309/scripts/shBrushCSharp.js?t=1406837068000',
+            'css					/js/sh309/scripts/shBrushCss.js?t=1406837068000',
+            'delphi pascal			/js/sh309/scripts/shBrushDelphi.js?t=1406837068000',
+            'diff patch pas			/js/sh309/scripts/shBrushDiff.js?t=1406837068000',
+            'erl erlang				/js/sh309/scripts/shBrushErlang.js?t=1406837068000',
+            'groovy					/js/sh309/scripts/shBrushGroovy.js?t=1406837068000',
+            'haxe hx				/js/sh309/scripts/shBrushHaxe.js?t=1406837068000',
+            'java					/js/sh309/scripts/shBrushJava.js?t=1406837068000',
+            'jfx javafx				/js/sh309/scripts/shBrushJavaFX.js?t=1406837068000',
+            'js jscript javascript	/js/sh309/scripts/shBrushJScript.js?t=1406837068000',
+            'perl pl				/js/sh309/scripts/shBrushPerl.js?t=1406837068000',
+            'php					/js/sh309/scripts/shBrushPhp.js?t=1406837068000',
+            'text plain				/js/sh309/scripts/shBrushPlain.js?t=1406837068000',
+            'py python				/js/sh309/scripts/shBrushPython.js?t=1406837068000',
+            'ruby rails ror rb		/js/sh309/scripts/shBrushRuby.js?t=1406837068000',
+            'scala					/js/sh309/scripts/shBrushScala.js?t=1406837068000',
+            'sql					/js/sh309/scripts/shBrushSql.js?t=1406837068000',
+            'vb vbnet				/js/sh309/scripts/shBrushVb.js?t=1406837068000',
+            'xml xhtml xslt html	/js/sh309/scripts/shBrushXml.js?t=1406837068000'
+    );
+    SyntaxHighlighter.all();
+</script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/js/minmax.js?t=1377425784000"></script>
+<![endif]-->
+<script type="text/javascript">
+<!--
+var posting = false;
+var upprev_closed = false;
+var upprev_hidden = true;
+
+$(document).ready(function(){
+    $('.BlogContent img').css('cursor','pointer');
+    jQuery.each($('.BlogContent img'),function(idx,v){
+    	$(v).wrap("<a href='"+$(this).attr('src')+"' target='_blank'></a>");
+    });
+	$('#form_comment').ajaxForm({
+		dataType: 'json',
+		bforeSubmit: function(){
+			posting = true;
+		},
+		success: function(json) {
+        	if(json.msg){
+				///alert(json.msg);
+				$('#cmt_tip').html("<span style='color:#C00;'>"+json.msg+"</span>");
+				$('#wmd-input').focus();				
+			}else{
+				var url = "http://my.oschina.net/u/1171837/blog_post?_cmt_blog="+json.blog+"&_cmt_user="+json.user+"&_cmt_id="+json.id;				
+        		jQuery.get(url, function(data){
+    				$('#form_comment .NoData').hide();
+        			$('ul#BlogComments').append(data);
+        			$('#form_comment').resetForm();
+        		}); 
+			}
+		}
+	});
+	
+    var at_datas = [];
+    $('img.SmallPortrait').each(function(){
+        var name = $(this).attr('alt');
+        if(jQuery.inArray(name, at_datas) < 0 && name != '${g_user.name}')
+            at_datas.push(name);
+    });
+    $("#form_comment textarea").atWho("@", {data: at_datas});
+	$("#form_comment textarea").on("keydown",function(event){
+		if((event.metaKey || event.ctrlKey) && event.keyCode==13){
+			$("#form_comment").submit();
+		}
+	});
+	$("#submiting").ajaxStart(function(){
+	   if(posting){
+    	   $('#btn_submit').attr("disabled","disabled");
+           $(this).show();
+	   }
+    });
+	$("#submiting").ajaxComplete(function(event,request, settings){
+	   if(posting){
+           $(this).hide();
+    	   $('#btn_submit').attr("disabled","");
+	   }
+	   posting = false;
+    }); 
+	
+    $(window).scroll(function() {
+        var lastScreen;
+        if ($("#postform").length > 0)
+            lastScreen = getScrollY() + $(window).height() < $("#postform").offset().top * 1 ? false : true;
+        else
+            lastScreen = getScrollY() + $(window).height() < $(document).height() * 1 ? false : true;
+        if (lastScreen && !upprev_closed) {
+            $("#RelativeBlogs").stop().animate({right:"0px"});
+            upprev_hidden = false;
+        }
+        else if (upprev_closed && getScrollY() == 0) {
+            upprev_closed = false;
+        }
+        else if (!upprev_hidden) {
+            upprev_hidden = true;
+            $("#RelativeBlogs").stop().animate({right:"-400px"});
+        }
+    });
+    $("#RelativeBlogs #btn_close").click(function() {
+        $("#RelativeBlogs").stop().animate({right:"-400px"});
+        upprev_closed = true;
+        upprev_hidden = true;
+    });
+});
+function delete_c(nid,uid,cid){
+  if(confirm("您确认要删除此篇评论？")){
+    var args = "cmt="+cid+"#"+uid+"#"+nid;
+    ajax_post("/action/blog/delete_blog_comments?space=1171837",args,function(){$("#cmt_"+nid+"_"+uid+"_"+cid).fadeOut();});
+  }
+}
+var replyinline_dup = false;
+function ReplyInline(blog,user,reply){
+	$('.inline_reply').empty();
+	var div_id = '#inline_reply_of_'+blog+'_'+user+'_'+reply;
+	$('#inline_reply_id').val(user+'_'+reply);
+	$(div_id).html($('#inline_reply_editor').html());
+	$('#ccom_content').focus();
+	$('#btn_close_inline_reply').click(function(){
+		$(div_id).empty();
+	});
+	var li_id = '#cmt_'+blog+'_'+user+'_'+reply;
+	var p_li = $(li_id);
+	var tip = $("#ficmp_msg");
+	$('#form_inline_comment').ajaxForm({
+		dataType: 'json',
+		beforeSubmit:function(){
+			if(replyinline_dup){
+			    tip.html("正在发表评论，请勿重复提交");
+				return false;
+			}
+			replyinline_dup = true;
+			return true;
+		},
+    	success: function(json) {
+			tip.html("");
+        	if(json.msg){                                                                                                       
+				tip.html(json.msg);
+				replyinline_dup = false;
+        	}
+        	else if(json.id){
+    			ajax_post("http://my.oschina.net/blog/show_post","_cmt_user="+"&_cmt_id="+json.id,function(html){
+					if(html.length > 0){
+						$(html).insertAfter(p_li);
+						$(div_id).empty();
+					}else{
+						tip.html("获取评论失败");
+					}
+					setTimeout(function(){
+    					replyinline_dup = false;
+					},5000)
+				});
+        	}
+    	}
+	});
+}
+function edit_catalogs(qid){
+	popup("/set-catalogs?parent=1&type=3&id="+qid);
+}
+function vote(blogid){
+		alert("必须登录后才能操作 :)");
+	}
+function toggle_recomm(blogid){
+	ajax_post("/action/blog/toggle_recomm","id="+blogid,function(html){
+		if(html == '-1')
+			alert("文章不存在");
+		else if(html == 0){
+			$('#lnk_recomm_'+blogid).removeClass('recommend');
+			$('#lnk_recomm_'+blogid).text("未推荐");
+		}
+		else if(html == 1){
+			$('#lnk_recomm_'+blogid).addClass('recommend');
+			$('#lnk_recomm_'+blogid).text("已推荐");
+		}
+	});
+}
+	var textbox = $("#wmd-input").textbox({
+		maxLength: 1000,
+    	onInput: function(event, status) {
+			var txt = jQuery.trim($("#wmd-input").val());
+    	}
+	});	
+	function insert_projects() {
+		textbox.insertText('#此处输入软件名#');
+		$('#TweetEmotions').removeAttr('txt_id');
+	}
+	function insert_projects_c() {
+    	var combox = $("#ccom_content").textbox({
+    		maxLength: 1000,
+        	onInput: function(event, status) {
+    			var txt = jQuery.trim($("#ccom_content").val());
+        	}
+    	});	
+		combox.insertText('#此处输入软件名#');
+		$('#TweetEmotions').removeAttr('txt_id');
+	}
+	function insert_emotions(id,obj) {
+		if(id) {
+			$('#TweetEmotions').attr('txt_id',id);
+			var thiz = $(obj);
+			var offset = thiz.offset();
+			var poffset = thiz.offsetParent().offset();
+        	var left = offset.left-poffset.left;
+        	var top = offset.top-poffset.top;
+			$('#TweetFormPopupWraper').css({'top':top+25 +'px','left':left+'px'});
+		}
+		else {
+			$('#TweetFormPopupWraper').css({'top':'','left':''});
+			$('#TweetEmotions').removeAttr('txt_id');
+		}
+		$('#TweetEmotions').show();
+		$('#TweetImages').hide();
+		$('#TweetFormPopupArrow').removeClass('projects');
+		$('#TweetFormPopupArrow').removeClass('images');
+		$('#TweetFormPopupArrow').addClass('emotions');
+		$('#TweetFormPopupWraper').slideDown('fast');
+	}
+	function ins_e(idx){
+		var txt_id = $('#TweetEmotions').attr('txt_id');
+		if(!txt_id)
+			textbox.insertText('['+idx+']');
+		else {
+			insertAtCursor(txt_id,'['+idx+']');
+		}
+		$('#TweetFormPopupWraper').hide();
+		return false;
+	}
+	function insertAtCursor(tbid,str) {
+		var tb = document.getElementById(tbid);
+        if (document.selection){
+			tb.focus();
+			var r = document.selection.createRange();
+            document.selection.empty();
+            r.text = str;
+            r.collapse();
+            r.select();
+        }
+        else{
+            var newstart = tb.selectionStart+str.length;
+            tb.value=tb.value.substr(0,tb.selectionStart)+str+tb.value.substring(tb.selectionEnd);
+            tb.selectionStart = newstart;
+            tb.selectionEnd = newstart;
+        }
+	}
+//-->
+</script>    </div>
+	<div class="clear"></div>
+	<div id="OSC_Footer"><style>
+.oscapp {text-align:left; width:220px;}
+.oscapp span {float:left;width:140px;}
+.oscapp a {float:left;text-indent:-9999em;width:16px;margin-left:8px;}
+.oscapp a.android {background:url('/img/android.gif') no-repeat left center;}
+.oscapp a.iphone {background:url('/img/iphone.gif') no-repeat left center;}
+.oscapp a.wp7 {background:url('/img/wp7.gif') no-repeat left center;}
+</style>
+<table width="100%"><tbody><tr>
+<td align="left">© 开源中国(OSChina.NET) | <a href="http://www.oschina.net/home/aboutosc">关于我们</a> | <a href="mailto:oschina.net@gmail.com">广告联系</a> | <a href="http://weibo.com/oschina2010" target="_blank">@新浪微博</a> | <a href="http://m.oschina.net/">开源中国手机版</a> | <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#737573;text-decoration:none;">粤ICP备12009483号-3</a></td>
+<td class="oscapp">
+	<span>开源中国手机客户端：</span>
+	<a href="http://www.oschina.net/app" class="android" title="Android客户端">Android</a>
+	<a href="http://www.oschina.net/app" class="iphone" title="iPhone 客户端">iPhone</a>
+	<a href="http://www.oschina.net/app" class="wp7" title="Windows Phone 客户端">WP7</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">开源中国社区(OSChina.net)是工信部 <a href="http://www.copu.org.cn/" target="_blank">开源软件推进联盟</a> 指定的官方社区</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+<!--
+if (top.location != self.location)top.location=self.location;
+//-->
+</script></div>
+</div>
+<script id="J---TK-load" type="text/javascript" charset="utf-8" async="" data-id="7670010020140313" data-guid="B8EBF324819A47E2868A0ABF9CF7239F" data-source="chrome.exe" data-browser="chrome" data-version="1.5.1" data-message="1" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/_tts_browser_center.js"></script>
+
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/space"></script>
+<script type="text/javascript" src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/ImageTool.js"></script>
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+
+	SelectStyle("#search-item",".search_list");
+	$('.Tweet .photo img').live("click",function(){
+		var T=$(this);
+		var t=this;
+		var bigImg = T.attr('bi');
+		var smallImg = T.attr('si');
+		var src = T.attr('src');
+		var newsrc = (bigImg == src)?smallImg:bigImg;
+		var imgId = T.attr('id');
+		if(T.parent().attr("id") == "img_container"){
+			T.parent().replaceWith(T);
+			T.removeAttr("style");
+			T.removeAttr("width");
+			T.removeAttr("height");
+		}
+		if(newsrc == bigImg){
+    		var loading=$('<img alt="loading" src="/img/loading.gif?t=1377425910000"/>');
+			var top = T.position().top+T.height()/2-8;
+			var left = T.position().left+T.width()/2-8;
+			loading.css({
+				'position':'absolute',
+				'z-index':999,
+				'top':top,
+				'left':left
+			});
+    		T.before(loading);
+			var tImg=new Image();
+			tImg.src=newsrc;
+			tImg.onload=function(){afterImgLoad(T,loading,imgId,newsrc,bigImg);};
+		}
+		else{
+			T.attr("src",newsrc);
+			$('#img_menu_'+imgId).remove();
+		}
+		return false;
+	});
+	
+	$(".tweet_thumb_wrapper").mouseenter(function(){
+		$(this).find(".tweet_play_video").css("opacity",1);
+	}).mouseleave(function(){
+		$(this).find(".tweet_play_video").css("opacity",0.7);
+	});
+
+    $("#TForm textarea").atWho("@", function(query, callback){
+        jQuery.ajax({
+            type:'POST',
+            url:"/action/tweet/at_suggest",
+            data:{'q':query},
+            dataType:'json',
+            success:function(json){
+                callback(json);
+            }
+        });
+    });
+	
+	toggle_tweet_video = function(id){
+		$("#tweet_video_thumb_"+id).toggle();
+		var video = $("#tweet_video_"+id).toggle();
+		video.siblings(".tweet_video_operation,.tweet_thumb_wrapper").toggle();
+	};
+	
+	function afterImgLoad(T,loading,imgId,url,bigImg){
+		var lnks = "<div id='img_menu_"+imgId+"' class='ImgMenu'>";
+		lnks += "<a href='#' onclick='$(\"#"+imgId+"\").click();return false;'>收起</a>";
+		lnks += "<a href='javascript:void(0);' onclick='rotate(this,\""+imgId+"\",0);' id='rotate_btn'>旋转</a>";
+		lnks += "<a href='"+bigImg+"' target='_blank'>查看原图</a></div>";			
+		loading.remove();
+		T.attr("src",url);
+		T.before(lnks);
+	}
+});
+
+function set_fellow_memo(fid,fname){
+	popup("/action/ajax/set_fellow_memo","friend="+fid+"&name="+fname);
+}
+
+function deleteMsgs(uid, fid, fname){
+	if(!confirm("你确认要清除与‘"+fname+"’的所有留言信息吗？"))
+		return ;
+	var args = "user="+uid+"&friend="+fid;
+	ajax_post("/action/msg/delete_user",args,function(html){
+		if(html.length > 0)
+			alert(html);
+		else{
+			$('#Msg_'+fid).fadeOut();
+		}
+	});
+}
+
+function follow_user(uid, uname){
+	just_follow(uid, uname,'${g_user.id}'); //oschina.js
+}
+
+function unfollow_user(uid, uname){
+	if(confirm("确定不再关注" + uname + "了吗？"))
+	just_unfollow(uid,'${g_user.id}',function(){
+		alert('已取消对 ' + uname + ' 的关注');
+	});
+}
+
+function tweet_reply(logid){
+	var r = $('#LogReply_'+logid);
+	if(!r.is(":hidden")){
+		close_tweet_reply(logid);
+		return ;
+	}
+	r.html("<div class='TweetRplsWrapper'><span class='loading'>正在加载评论，请稍候...</span></div>")
+	r.show();
+	r.load("http://my.oschina.net/u/1171837/tweet-rpls?log="+logid,function(){
+		$('#edt_tweet_post_'+logid).focus();
+        var at_datas = [];
+        $(this).find("img.SmallPortrait").each(function(){
+            var name = $(this).attr('alt');
+            if(jQuery.inArray(name, at_datas) < 0 && name != '${g_user.name}')
+                at_datas.push(name);
+        });
+        $(this).find("input.TXT_TweetRpl_Text").atWho("@", {data: at_datas});
+        $('#TweetReplyForm_'+logid).ajaxForm({
+        	dataType: 'json',
+			beforeSubmit: function(arr, form, options){
+				$('#BTN_TweetReply_'+logid).attr('disabled','disabled');
+			},
+            success: function(json) {
+            	if(json.msg){
+        			alert(json.msg);
+            	}else if(json.log){
+					$('#log_reply_count_'+logid).text(json.reply_count);
+        			//插入新评论					
+					ajax_get("/action/ajax/get_tweet_reply?id=" + json.log,true,function(html){
+						$('#LogReply_'+logid+' ul').prepend(html);
+					});
+					$('#edt_tweet_post_'+logid).val('');
+            	}
+				$('#BTN_TweetReply_'+logid).removeAttr('disabled');
+            }
+        });
+	});
+}
+function close_tweet_reply(logid){
+	$('#LogReply_'+logid).empty();
+	$('#LogReply_'+logid).hide();
+	$('#Logs .userlogs li').removeClass('hover');
+}
+function reply_rtweet(logid, rid, toname){
+	var edtPost = $('#edt_tweet_post_' + logid);
+	var old_v = edtPost.val();
+	if(old_v.length > 0)
+		edtPost.val(old_v + ',@'+toname+' ');
+	else
+		edtPost.val('回复 @'+toname+' : ');
+	edtPost.focus();
+	edtPost.caretPos(edtPost.val().length); }
+function delete_tweet(logid){
+	if(confirm("确认要删除这条信息吗？"))
+	ajax_post("/action/tweet/delete?log="+logid+"&user=${g_user.id}","",function(html){
+		if(html.length==0){
+			var elem = $('#LI_'+logid);
+			if(elem.length > 0)
+				$('#LI_'+logid).fadeOut();
+			else
+				location.reload();
+		}
+	});
+}
+function delete_tweet_reply(logid){
+	if(confirm("确认要删除这条评论吗？"))
+	ajax_post("/action/tweet/delete_reply?id="+logid+"&user=${g_user.id}","",function(html){
+		if(html.length > 0)
+			$('#LI_'+logid).fadeOut();
+	});
+}
+
+function delete_blog(blog_id){
+    if(!confirm("文章删除后无法恢复，请确认是否删除此篇文章？")) return;
+    ajax_post("/action/blog/delete?id="+blog_id+"&user=${g_user.id}&user_code=${g_user.activate_code}","",function(html){
+    	location.href="http://my.oschina.net/u/1171837/blog";
+    });
+}
+
+function SelectStyle(on,option){
+	var currentSort = $(on).attr('id');
+	var currentText = $(option+" li."+currentSort+" a").html();
+	$(on + " .text").html(currentText);
+	$(on + " .text").hover(function(){
+		$(this).addClass("hover")
+	},function(){
+		$(this).removeClass("hover")
+	});
+	$(option+" li a").each(function(index){
+		$(this).click(function(){
+			thishtml = $(this).html();
+			$(on + " .text").removeClass("on").html(thishtml);		
+			$(".selectbox select ").find("option").removeAttr('selected').eq(index).attr("selected","selected");	
+			$(option).hide()
+			return false;
+		});
+		
+	});		
+	
+	$(".selectbox").click(function(){		
+		$(option).toggle();
+		$(on + " .text").toggleClass("on");		
+		return false;
+	});
+	$(document).click(function(){
+		$(option).hide();	
+		$(on + " .text").removeClass("on");
+	});
+	$(document).trigger('click');
+
+}
+
+//-->
+</script>
+
+
+<!-- Generated by OsChina.NET (init:0[ms],page:88[ms],ip:124.205.129.97) --><div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div id="topcontrol" title="回到顶部" style="position: fixed; bottom: 165px; right: 100px; cursor: pointer;"><img src="./xUtils - android工具库， afinal的替代品 - wyouflf的个人空间 - 开源中国社区_files/gotop.gif" style="width:31px; height:31px;"></div><div class="tip-yellowsimple-medal"><div class="tip-inner tip-bg-image"></div><div class="tip-arrow tip-arrow-top tip-arrow-right tip-arrow-bottom tip-arrow-left"></div></div><div id="at-view" class="at-view"><ul id="at-view-ul"></ul></div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i; } else { d.textContent=i; } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

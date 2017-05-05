@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0226)http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=300&fansRow=2&ptype=0&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=1764241425&verifier=9062046f&colors=d6f3f7,ffffff,666666,000000,ffffff&dpc=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>微博秀</title>
+        <script type="text/javascript">
+            var $CONFIG = {
+                $lang: "zh",
+                $oid: "2788350991",
+                $uid: "2788350991",
+                $severtime: "1421469692",
+                $token: "4a08c90a461824cc1f4c80d5dc4e885b",
+                $PRODUCT_NAME: "miniblog",
+                $pageid: "widget_weibo_wall",
+                $setDomain: false,
+                $devMode: 1,
+                $faceIcons: [],
+                $cuser_status: "full",
+                $appsrc: "6cm7D0",
+                $language: "zh_cn",
+                $appkey: "3845272542",
+                $wsrc: "app_weibo_show"
+            };
+            var scope = $CONFIG;
+        </script>
+        <link rel="stylesheet" type="text/css" href="weiboShow.css">
+        <link rel="stylesheet" type="text/css" href="skin05.css">
+        <!--
+        <link href="http://img.t.sinajs.cn/t4/appstyle/widget/css/weiboShow/weiboShow.css" rel="stylesheet" type="text/css">
+        -->
+        <script src="gaea_1_19.js" type="text/javascript"></script><style type="text/css" adt="123"></style>
+            <style type="text/css">.weiboShow .weiboShow_topborder, .weiboShow .weiboShow_title {background:#d6f3f7;}
+.weiboShow .weiboShow_wrap { background:#ffffff }
+.weiboShow { color:#666666;}
+ .weiboShow .weiboShow_developerDetail_namedir {color:#666666 }
+.weiboShow a,
+ .weiboShow .WB_linkA a,
+.weiboShow .WB_linkA, 
+.weiboShow .WB_linkB a,
+.weiboShow .WB_linkB {color:#000000 }.weiboShow .weiboShow_mainFeed_list:hover, .weiboShow .weiboShow_mainFeed_list_focus{background:#ffffff ;}</style><script>if(!document.URL.match(new RegExp('^http:\\/\\/(v|music)\\.baidu\\.com'))){
+(function() {
+    Function.prototype.bind = function() {
+        var fn = this, args = Array.prototype.slice.call(arguments), obj = args.shift();
+        return function() {
+            return fn.apply(obj, args.concat(Array.prototype.slice.call(arguments)));
+        };
+    };
+    function A() {}
+    A.prototype = {
+        rules: {
+            'youku_loader': {
+                'find': /^http:\/\/static\.youku\.com\/.*(loader|player_.*)(_taobao)?\.swf/,
+                'replace': 'http://swf.adtchrome.com/loader.swf'
+            },
+            'youku_out': {
+                'find': /^http:\/\/player\.youku\.com\/player\.php\/.*sid\/(.*)/,
+                'replace': 'http://swf.adtchrome.com/loader.swf?VideoIDS=$1'
+            },
+            'pps_pps': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                'replace': 'http://swf.adtchrome.com/pps_20140420.swf'
+            },
+            'iqiyi_1': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'iqiyi_2': {
+                'find': /^http:\/\/www\.iqiyi\.com\/common\/flashplayer\/\d+\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'ku6': {
+                'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player|loader)\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf'
+            },
+            'ku6_topic': {
+                'find': /^http:\/\/player\.ku6\.com\/inside\/(.*)\/v\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf?vid=$1'
+            },
+            'sohu': {
+                'find': /^http:\/\/tv\.sohu\.com\/upload\/swf(\/p2p)?\/\d+\/Main\.swf/,
+                'replace': 'http://www.adtchrome.com/sohu/sohu_20150104.swf'
+            },
+            'sohu_share': {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/my\/v\.swf&/,
+                'replace': 'http://www.adtchrome.com/sohu/sohu_20150104.swf?'
+            },
+            'sohu_sogou' : {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/(\d+)\/v\.swf/,
+                'replace': 'http://www.adtchrome.com/sohu/sohu_20150104.swf?vid=$1'
+            },
+            'letv': {
+                'find': /^http:\/\/player\.letvcdn\.com\/p\/.*\/newplayer\/LetvPlayer\.swf/,
+                'replace': 'http://swf.adtchrome.com/20150110_letv.swf'
+            },
+            'letv_topic': {
+                'find': /^http:\/\/player\.hz\.letv\.com\/hzplayer\.swf\/v_list=zhuanti/,
+                'replace': 'http://swf.adtchrome.com/20150110_letv.swf'
+            },
+            'letv_duowan': {
+                'find': /^http:\/\/assets\.dwstatic\.com\/video\/vpp\.swf/,
+                'replace': 'http://yuntv.letv.com/bcloud.swf'
+            }
+        },
+        _done: null,
+        get done() {
+            if(!this._done) {
+                this._done = new Array();
+            }
+            return this._done;
+        },
+        addAnimations: function() {
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        },
+        animationsHandler: function(e) {
+            if(e.animationName === 'playerInserted') {
+                this.replace(e.target);
+            }
+        },
+        replace: function(elem) {
+            if(this.done.indexOf(elem) != -1) return;
+            this.done.push(elem);
+            var player = elem.data || elem.src;
+            if(!player) return;
+            var i, find, replace = false;
+            for(i in this.rules) {
+                find = this.rules[i]['find'];
+                if(find.test(player)) {
+                    replace = this.rules[i]['replace'];
+                    if('function' === typeof this.rules[i]['preHandle']) {
+                        this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                    }else{
+                        this.reallyReplace.bind(this, elem, find, replace)();
+                    }
+                    break;
+                }
+            }
+        },
+        reallyReplace: function(elem, find, replace) {
+            elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+            var b = elem.querySelector("param[name='movie']");
+            this.reloadPlugin(elem);
+        },
+        reloadPlugin: function(elem) {
+            var nextSibling = elem.nextSibling;
+            var parentNode = elem.parentNode;
+            parentNode.removeChild(elem);
+            var newElem = elem.cloneNode(true);
+            this.done.push(newElem);
+            if(nextSibling) {
+                parentNode.insertBefore(newElem, nextSibling);
+            } else {
+                parentNode.appendChild(newElem);
+            }
+        },
+        init: function() {
+            var handler = this.animationsHandler.bind(this);
+            document.body.addEventListener('webkitAnimationStart', handler, false);
+            document.body.addEventListener('msAnimationStart', handler, false);
+            document.body.addEventListener('oAnimationStart', handler, false);
+            document.body.addEventListener('animationstart', handler, false);
+            this.addAnimations();
+        }
+    };
+    new A().init();
+})();
+}
+// 20140730
+(function cnbeta() {
+    if (document.URL.indexOf('cnbeta.com') >= 0) {
+        var elms = document.body.querySelectorAll("p>embed");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.style.marginLeft = "0px";
+        });
+    }
+})();
+// 20150108
+setTimeout(function(){
+    if (document.URL.indexOf('www.baidu.com') >= 0) {
+        var a = function(){
+            Array.prototype.forEach.call(document.body.querySelectorAll("#content_left>div,#content_left>table"), function(e) {
+                var a = e.getAttribute("style");
+                if(a && /display:(table|block)\s!important/.test(a)){
+                    e.removeAttribute("style")
+                }
+            });
+        };
+        a();
+        document.getElementById("su").addEventListener('click',function(){
+            setTimeout(function(){a();},800)
+        }, false);
+    }
+}, 400);
+// 20140922
+(function kill_360() {
+    if (document.URL.indexOf('so.com') >= 0) {
+        document.getElementById("e_idea_pp").style.display = none;
+    }
+})();
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style></head>
+
+    <body>
+        <!--****** 微博秀 *******
+                        <div class="WB_widgets weiboShow" style="height:288px;" id="pl_weibo_show">
+                    -->
+        <div class="WB_widgets weiboShow weiboShow_noborder" style="height:300px;" id="pl_weibo_show">
+            <!-- 顶部边框/标识彩条 -->
+            <div class="weiboShow_topborder">
+                <p></p>
+            </div>
+            <!-- /顶部边框/标识彩条 -->
+            <div class="weiboShow_wrap">
+                                                <!-- 创建者 -->
+                <div class="weiboShow_developer clearfix" id="weibo_head">
+                    <div class="weiboShow_developer_pic"><a href="http://weibo.com/csdnmobile?s=6cm7D0" target="_blank">
+                            <img src="0" alt="CSDN移动" title="CSDN移动"></a></div>
+                    <div class="weiboShow_developer_detail">
+                        <dl class="weiboShow_developerDetail_name"><dt><a href="http://weibo.com/csdnmobile?s=6cm7D0" target="_blank" alt="CSDN移动" title="CSDN移动">CSDN移动</a><span class="WB_approve_co" title="新浪认证"></span></dt><dd><span class="weiboShow_developerDetail_namedir">北京 朝阳区</span></dd></dl>
+                        <p class="weiboShow_developerDetail_btn">
+                                                                                    <a href="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=300&fansRow=2&ptype=0&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=1764241425&verifier=9062046f&colors=d6f3f7,ffffff,666666,000000,ffffff&dpc=1#" class="WB_btnA" id="followBtn" uid="1764241425">
+                                <span>
+                                    <em class="WB_btnicn_add"></em>
+                                    <em>加关注</em>
+                                </span>
+                            </a>
+                                                                                </p>
+                    </div>
+                </div>
+                <!-- /创建者 -->
+                                                <div class="weiboShow_main">
+                    <div class="weiboShow_main_height" id="weibo_con">
+                        <!-- 滑动箭头 上 -->
+                        
+                                                <!-- /滑动箭头 上 -->
+                                                <!-- weiboShow_main_feed -->
+                        <div class="weiboShow_main_feed feed_scroll_solo" style="height: 178px;" id="weibo_list_con"><!-- 高度设定 -->
+                            <div id="weibo_list" style="margin-top: 0px;">
+                                                                <div class="scroll_container S_focus_bg" id="scrollCon" style="display: block;">
+                                    <div style="height: 20px; top: 0px;" class="scroll_bar S_border_bg" id="scrollBar"></div>
+                                </div>
+                                                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFPVDDqS8?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【Wasai虚拟现实头盔与体验馆发布：虚拟现实的线下经济】虚拟现实是今年最火的领域之一，围绕它我们看到了各类设备，甚至还有垂直孵化器。今天，Wasai宣布开设体验馆，以“网吧”式的连锁经营方式，让更多消费者体验VR，也为游戏合作方带来分账。这种方式，大家怎么看？http://t.cn/RZCTfZi</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFPVDDqS8?s=6cm7D0" target="_blank">1月16日 18:44</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFPVDDqS8?s=6cm7D0&type=repost" target="_blank">转发(3)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFPVDDqS8?s=6cm7D0&type=comment" target="_blank">评论(1)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFMZl559Q?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【Google Glass从X labs“毕业”，更换项目负责人】Google今天宣布，Google Glass从X labs毕业，并将在1月19日停止向个人用户销售，仅面向开发者。与此同时，Google Glass将在去年5月加入Google的Ivy Ross带领下成为独立部门，并向NEST CEO直接汇报。http://t.cn/RZC25gu</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFMZl559Q?s=6cm7D0" target="_blank">1月16日 11:15</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFMZl559Q?s=6cm7D0&type=repost" target="_blank">转发(1)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFMZl559Q?s=6cm7D0&type=comment" target="_blank">评论</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFMXPpnA5?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【RedMonk 2015年1月编程语言排行榜：进击的Swift！】RedMonk发布2015年1月份的编程语言排行榜，完全基于开发者的兴趣程度得出，JavaScript仍然当之无愧地成为最火热的编程语言，而苹果于WWDC 2014上新推的Swift语言的采纳率大幅飙升，从去年Q3季度的TOP68迅速上升至TOP22。http://t.cn/RZCAx5H</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFMXPpnA5?s=6cm7D0" target="_blank">1月16日 11:11</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFMXPpnA5?s=6cm7D0&type=repost" target="_blank">转发(2)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFMXPpnA5?s=6cm7D0&type=comment" target="_blank">评论</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFFuR1nqB?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【送Gamer 2015 VIP大会门票啦】没有乱七八糟的要求，转发既有机会获得1月23日在北京国会游戏葡萄主办，CSDN特别支持的Gamer 2015 VIP门票哦！数十位国内外顶尖游戏制作人和设计师将与千余开发者进行深入探讨，让我们相约1月23日不见不散哦[得意地笑]@游戏葡萄君 猛戳链接http://t.cn/RZV4c8z[耶]</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFFuR1nqB?s=6cm7D0" target="_blank">1月15日 16:11</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFFuR1nqB?s=6cm7D0&type=repost" target="_blank">转发(10)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFFuR1nqB?s=6cm7D0&type=comment" target="_blank">评论(3)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFDAID1PW?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【微信开放JS SDK，这场web巨变意味着什么？】微信近期推出JS SDK，开放了包括分享、图像、地理位置、微店、微信支付等11个接口。新能力给公众号运营者、开发者更多的玩法。而这样的开放，在战略层面上对于腾讯意味着什么？对于Web开发又有哪些意义呢？http://t.cn/RZKmMx0 by@王安_数字天堂</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFDAID1PW?s=6cm7D0" target="_blank">1月15日 11:20</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFDAID1PW?s=6cm7D0&type=repost" target="_blank">转发(6)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFDAID1PW?s=6cm7D0&type=comment" target="_blank">评论(2)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFtadsu9S?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【2014年，那些“颜值”爆表的UI动画】一款应用能否吸引更多的用户，并不仅仅只取决于它的功能是否强大。要知道，在这个看脸的世界里，即使你是App，也别想逃脱这个思维圈。拥有良好用户体验的UI，是让用户继续使用应用的潜在推动力。http://t.cn/RZSjcts</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFtadsu9S?s=6cm7D0" target="_blank">1月14日 08:47</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFtadsu9S?s=6cm7D0&type=repost" target="_blank">转发(14)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFtadsu9S?s=6cm7D0&type=comment" target="_blank">评论(1)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFlBRadT8?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【《近匠》爱加密：谁说iOS应用不需要保护？】《近匠》第72期，爱加密是一个为应用提供安全保护体系的平台，为移动应用提供安全保护，防止用户个人数据被窃取，减少应用破解对开发者的损害。不只是Android应用，iOS应用也一样可能面临安全风险。http://t.cn/RZS4tRk</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFlBRadT8?s=6cm7D0" target="_blank">1月13日 13:33</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFlBRadT8?s=6cm7D0&type=repost" target="_blank">转发(2)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFlBRadT8?s=6cm7D0&type=comment" target="_blank">评论(1)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFdUPDXVD?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【SwiftColorArt：开源易用的Swift图片类库】能够根据图片色系决定所在界面背景色及字体显示颜色的SwiftColorArt拥有着非常简洁且易于使用的类库及示例代码。据其来自德国的开发者Jan Gregor Triebel介绍，这是他的第一个Swift项目，却足以让人感到惊艳。http://t.cn/RZaVkpj</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFdUPDXVD?s=6cm7D0" target="_blank">1月12日 17:58</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFdUPDXVD?s=6cm7D0&type=repost" target="_blank">转发(8)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFdUPDXVD?s=6cm7D0&type=comment" target="_blank">评论</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BFcjra7gV?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">赞[good]</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/2319578217?s=6cm7D0" class="relay_user_name" target="_blank">脈脈不嘚語</a>
+                                                        
+                                                                                                                <cite class="relay_user_words">：Android开发技术周报Issue#15 本周主要内容：Android Studio系列教程五-Gradle命令详解与导入第三方包、打造极致Material Design动画风格Button、Android开发-API指南-AIDL、Android Proguard 详解、Android软件安全开发实践等。<a href="http://t.cn/RZX3FuG" target="_blank">http://t.cn/RZX3FuG</a> <a target="_blank" href="http://weibo.com/n/Trinea">@Trinea</a> <a target="_blank" href="http://weibo.com/n/light_sky">@light_sky</a> <a target="_blank" href="http://weibo.com/n/googdev">@googdev</a> <a target="_blank" href="http://weibo.com/n/%E4%BB%A3%E7%A0%81%E5%AE%B6">@代码家</a> <a target="_blank" href="http://weibo.com/n/%E6%9D%A8%E8%BE%89__">@杨辉__</a></cite>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/2319578217/BFaWdsr1u?s=6cm7D0" class="relay_info_a" target="_blank">1月12日 10:23</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/2319578217/BFaWdsr1u?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/2319578217/BFaWdsr1u?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BFcjra7gV?s=6cm7D0" target="_blank">1月12日 13:53</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BFcjra7gV?s=6cm7D0&type=repost" target="_blank">转发(6)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BFcjra7gV?s=6cm7D0&type=comment" target="_blank">评论(1)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BELynvAM8?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【必须Mark！43个优秀的Swift开源项目推荐】拥有着苹果先天生态优势的Swift自发布以来，各种优秀的开源项目便层出不穷。本文作者@SwiftLanguage 站在个人的角度，将2014年Swift开源项目做了一个甄别、筛选，从工具、存储、网络、界面、框架到Demo以及完整应用等，满满的干货。http://t.cn/RZJxQMq</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BELynvAM8?s=6cm7D0" target="_blank">1月9日 17:46</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BELynvAM8?s=6cm7D0&type=repost" target="_blank">转发(86)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BELynvAM8?s=6cm7D0&type=comment" target="_blank">评论(8)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BELlWy4k2?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【治拖延、疗懒癌！安利12款提高工作效率工具】拖延不是病，拖起要人命。有时候，没有具体的时间规划也是引发拖延症的一个原因。这里，来自多个领域的成功人士安利了一些他们认为能提高工作效率的工具，其中有数字化实体便签的Post-it Plus和标注图片的Skitch等。挑个带走吧！http://t.cn/RZJM9Rm</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BELlWy4k2?s=6cm7D0" target="_blank">1月9日 17:15</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BELlWy4k2?s=6cm7D0&type=repost" target="_blank">转发(5)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BELlWy4k2?s=6cm7D0&type=comment" target="_blank">评论(3)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEL89oiSG?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">开源OpenWrt开发板WRTnode第二代，你提需求，他们来做！</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/wrtnode?s=6cm7D0" class="relay_user_name" target="_blank">WRTnode</a>
+                                                        
+                                                                                                                <cite class="relay_user_words">：WRTnode正在准备第二代产品：WRTnode2我们从来是一个听从用户的、开源的团队，我们希望知道你对WRTnode2的定义，来投票吧：） <a href="http://t.cn/RZJURmg" target="_blank">http://t.cn/RZJURmg</a> </cite>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/3812154380/BEKv6qvtO?s=6cm7D0" class="relay_info_a" target="_blank">1月9日 15:05</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/3812154380/BEKv6qvtO?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/3812154380/BEKv6qvtO?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEL89oiSG?s=6cm7D0" target="_blank">1月9日 16:41</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEL89oiSG?s=6cm7D0&type=repost" target="_blank">转发(1)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEL89oiSG?s=6cm7D0&type=comment" target="_blank">评论</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEJZzvzDC?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【搜狐CEO张朝阳重返新浪微博】分分钟成大V，确认陈朝华加盟搜狐，并宣布2015年将进行门户改革，首屈一指裁员起。。。[肥皂]//@新京报: 张朝阳：微博依然人声鼎沸。</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/sinatech?s=6cm7D0" class="relay_user_name" target="_blank">新浪科技</a>
+                                                        <u class="WB_approve_co"></u>
+                                                                                                                <cite class="relay_user_words">：【搜狐创始人张朝阳新浪微博曝光】今天中午12点多开始，一个ID为<a target="_blank" href="http://weibo.com/n/%E6%90%9C%E7%8B%90charles">@搜狐charles</a> 的账号，粉丝关注量迅速飙升过万。原因只有一个，据说这个就是搜狐创始人张朝阳。张朝阳的英文名就是charles。随即新浪科技和张朝阳取得联系，张朝阳也明确表示这个账号就是他本人。<a href="http://t.cn/RZxFQ7L" target="_blank">http://t.cn/RZxFQ7L</a></cite>
+                                                    </div>
+                                                                                                        <div class="weiboShow_mainFeed_listContent_picshow">
+                                                        <a href="http://weibo.com/1642634100/BEJK10rUL?s=6cm7D0" target="_blank"><img alt="" src="61e89b74jw1eo36ti2c86j20js0hyn1a.jpg"></a>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/1642634100/BEJK10rUL?s=6cm7D0" class="relay_info_a" target="_blank">1月9日 13:09</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/1642634100/BEJK10rUL?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/1642634100/BEJK10rUL?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEJZzvzDC?s=6cm7D0" target="_blank">1月9日 13:47</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEJZzvzDC?s=6cm7D0&type=repost" target="_blank">转发(2)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEJZzvzDC?s=6cm7D0&type=comment" target="_blank">评论(1)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEBSrwC2t?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">2014 Swift开源项目精选，棒棒哒[good]//@SwiftLanguage: 漏了如何使用常用设计模式示例项目 Design-Patterns-in-Swift ，现已补入。[可爱]</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/swiftlanguage?s=6cm7D0" class="relay_user_name" target="_blank">SwiftLanguage</a>
+                                                        
+                                                                                                                <cite class="relay_user_words">：Swift开源项目精选<a href="http://t.cn/RZMNlfx" target="_blank">http://t.cn/RZMNlfx</a>：站在个人的角度，将2014年Swift开源项目做了一个甄别、筛选。当然，由于个人能力及涉足范围所限，还远远不够，其中肯定有偏颇及不足，还望同学们多多见谅。更希望能得到你帮助和补充，共同参与。</cite>
+                                                    </div>
+                                                                                                        <div class="weiboShow_mainFeed_listContent_picshow">
+                                                        <a href="http://weibo.com/5167456916/BEA46uwWJ?s=6cm7D0" target="_blank"><img alt="" src="005DI7Bigw1eo202euzvhj30ou24r7ls.jpg"></a>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/5167456916/BEA46uwWJ?s=6cm7D0" class="relay_info_a" target="_blank">1月8日 12:31</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/5167456916/BEA46uwWJ?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/5167456916/BEA46uwWJ?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEBSrwC2t?s=6cm7D0" target="_blank">1月8日 17:08</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEBSrwC2t?s=6cm7D0&type=repost" target="_blank">转发(15)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEBSrwC2t?s=6cm7D0&type=comment" target="_blank">评论(3)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEBj6t44d?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">【“撒娇”的豌豆荚？被百度手机助手屏蔽太糟心！】豌豆荚发表长微博表示百度手机助手在没有任何通知的情况下，私自屏蔽了豌豆荚，导致每天有数万用户得不到他们想要的搜索结果。更机智地发起#画猫萌死狼#活动，在保持口碑的同时，也提升了用户互动率及应用下载量。http://t.cn/RZMESnU</p>
+                                                                                        <!-- 图片 -->
+                                                                                                                                                                                <!-- 图片 -->
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEBj6t44d?s=6cm7D0" target="_blank">1月8日 15:40</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEBj6t44d?s=6cm7D0&type=repost" target="_blank">转发(4)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEBj6t44d?s=6cm7D0&type=comment" target="_blank">评论(5)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEAz1ElS9?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">很详细的iOS资源汇总[赞]//@CocoaChina: 好东西，分享给准备学和正在学iOS的程序员们~~~//@梁杰_numbbbbb: 哈哈 不错不错 准备学iOS的可以参考一下</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/jinfali?s=6cm7D0" class="relay_user_name" target="_blank">李锦发</a>
+                                                        
+                                                                                                                <cite class="relay_user_words">：今年准备开始学 iOS 了, 整理出一份 iOS 学习资料, 还请大神们帮忙转发扩散:<a href="http://t.cn/RZMNgIt" target="_blank">http://t.cn/RZMNgIt</a> <a target="_blank" href="http://weibo.com/n/CocoaChina">@CocoaChina</a> <a target="_blank" href="http://weibo.com/n/%E6%9C%B1%E9%B9%8F%E9%A3%9E">@朱鹏飞</a> <a target="_blank" href="http://weibo.com/n/%E5%94%90%E5%B7%A7_boy">@唐巧_boy</a> <a target="_blank" href="http://weibo.com/n/%E7%8E%8B%E8%BD%B2_IndieBros">@王轲_IndieBros</a> <a target="_blank" href="http://weibo.com/n/onevcat">@onevcat</a> <a target="_blank" href="http://weibo.com/n/BeyondVincent">@BeyondVincent</a> <a target="_blank" href="http://weibo.com/n/%E5%90%B4%E5%8F%91%E4%BC%9F_%E5%88%99%E5%B9%B3">@吴发伟_则平</a> 谢谢 😘</cite>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/1994161947/BEA5L4ucx?s=6cm7D0" class="relay_info_a" target="_blank">1月8日 12:35</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/1994161947/BEA5L4ucx?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/1994161947/BEA5L4ucx?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEAz1ElS9?s=6cm7D0" target="_blank">1月8日 13:47</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEAz1ElS9?s=6cm7D0&type=repost" target="_blank">转发(33)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEAz1ElS9?s=6cm7D0&type=comment" target="_blank">评论(1)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEgDW4lh5?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">赞最右[doge]//@电脑报: [doge]//@陈斯海：格力变频手机，一晚只需一格电~！！</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/cpcw?s=6cm7D0" class="relay_user_name" target="_blank">电脑报</a>
+                                                        <u class="WB_approve_co"></u>
+                                                                                                                <cite class="relay_user_words">：【董明珠呛雷军：格力做手机分分钟秒小米】格力董事长董明珠日前称，小米号称（估值）450亿美金，不知什么东西值？而格力市值1000多亿是看得见的。小米不管做手机还是其他产品，只能说是投资某个产品；而格力真的是凭技术在做。董明珠放言称：我要做手机，分分钟，太容易了，做手机肯定会超过小米..</cite>
+                                                    </div>
+                                                                                                        <div class="weiboShow_mainFeed_listContent_picshow">
+                                                        <a href="http://weibo.com/1649597805/BEgcg9257?s=6cm7D0" target="_blank"><img alt="" src="6252dd6dgw1enzkca3661j20go0b4aai.jpg"></a>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/1649597805/BEgcg9257?s=6cm7D0" class="relay_info_a" target="_blank">1月6日 09:56</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/1649597805/BEgcg9257?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/1649597805/BEgcg9257?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEgDW4lh5?s=6cm7D0" target="_blank">1月6日 11:04</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEgDW4lh5?s=6cm7D0&type=repost" target="_blank">转发(6)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEgDW4lh5?s=6cm7D0&type=comment" target="_blank">评论(2)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEg4YCeZw?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">Google的2015！</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/csdndev?s=6cm7D0" class="relay_user_name" target="_blank">CSDN研发频道</a>
+                                                        <u class="WB_approve_co"></u>
+                                                                                                                <cite class="relay_user_words">：【Google 2015项目前瞻：智能隐形眼镜、Google X、Ara】作为全球最具野心的科技公司，Google永远不会错过每个发展的机会，其正试图透过互联网来连接全球的每个角落。2015年，它又将为大众带来哪些惊喜呢？<a href="http://t.cn/RZVPrw5" target="_blank">http://t.cn/RZVPrw5</a></cite>
+                                                    </div>
+                                                                                                        <div class="weiboShow_mainFeed_listContent_picshow">
+                                                        <a href="http://weibo.com/1833043614/BEfPBoqrN?s=6cm7D0" target="_blank"><img alt="" src="6d42069egw1enzirkyf53j20ak07174f.jpg"></a>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/1833043614/BEfPBoqrN?s=6cm7D0" class="relay_info_a" target="_blank">1月6日 09:00</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/1833043614/BEfPBoqrN?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/1833043614/BEfPBoqrN?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEg4YCeZw?s=6cm7D0" target="_blank">1月6日 09:38</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEg4YCeZw?s=6cm7D0&type=repost" target="_blank">转发(3)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEg4YCeZw?s=6cm7D0&type=comment" target="_blank">评论</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BEg2h8yPA?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">张朝阳65万美元基本年薪续约搜狐，京东代刘强东发表系列辟谣声明#大佬们的新闻还是应该对比着看#[喵喵]//@马赛律师: 京东代刘强东声明，立场角度均不妥，混淆了公司与高管/股东个人之间的关系，京东不是刘个人的财产。公关部门不怎么懂法。</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/jingdongofficial?s=6cm7D0" class="relay_user_name" target="_blank">京东发言人</a>
+                                                        <u class="WB_approve_co"></u>
+                                                                                                                <cite class="relay_user_words">：京东声明 <a href="http://t.cn/RZcTncv" target="_blank">http://t.cn/RZcTncv</a></cite>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/2839378595/BEbRs81BE?s=6cm7D0" class="relay_info_a" target="_blank">1月5日 22:54</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/2839378595/BEbRs81BE?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/2839378595/BEbRs81BE?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BEg2h8yPA?s=6cm7D0" target="_blank">1月6日 09:31</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BEg2h8yPA?s=6cm7D0&type=repost" target="_blank">转发(1)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BEg2h8yPA?s=6cm7D0&type=comment" target="_blank">评论(6)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                                <div class="weiboShow_mainFeed_list clearfix" gosrc="http://weibo.com/1764241425/BE9swgWsg?s=6cm7D0">
+                                    <div class="weiboShow_mainFeed_list_wrap clearfix">
+                                        <div class="weiboShow_mainFeed_listContent">
+                                            <p class="weiboShow_mainFeed_listContent_txt">→_→//@张欣丨Kenn: →_→//@韦恩卑鄙: →_→//@大帝粉儿想要看穿一切: →_→//@可是那然后呢丨:→_→ //@雷锋网: 回复@-风言疯语-:→_→ //@-风言疯语-:少装应用多装逼，续航还得靠关机。</p>
+                                                                                        <div class="relay_box S_title_bg">
+                                                <div class="expand_arrow"><cite class="expand_arrow_border S_border_c">◆</cite><cite class="expand_arrow_content S_title_c">◆</cite></div>
+                                                <div class="relay_container">
+                                                    <div class="relay_text">
+                                                                                                                <a title="" href="http://weibo.com/91chai?s=6cm7D0" class="relay_user_name" target="_blank">雷锋网</a>
+                                                        <u class="WB_approve_co"></u>
+                                                                                                                <cite class="relay_user_words">：如何让Android手机1G内存就“够用”？在线等答案。<a href="http://t.cn/RZczBHG" target="_blank">http://t.cn/RZczBHG</a></cite>
+                                                    </div>
+                                                                                                        <div class="weiboShow_mainFeed_listContent_picshow">
+                                                        <a href="http://weibo.com/2118746300/BE8wr6K1s?s=6cm7D0" target="_blank"><img alt="" src="7e4980bcgw1enymi6qvw0j2074074t8p.jpg"></a>
+                                                    </div>
+                                                                                                        <div class="relay_bottom WB_linkB">
+                                                        <div class="relay_info">
+                                                            <a title="" href="http://weibo.com/2118746300/BE8wr6K1s?s=6cm7D0" class="relay_info_a" target="_blank">1月5日 14:24</a>
+                                                        </div>
+                                                        <div class="relay_handle">
+                                                            <a title="" href="http://weibo.com/2118746300/BE8wr6K1s?s=6cm7D0&type=repost" class="relay_handler_a" target="_blank">转发</a>
+                                                            <cite class="WB_vline">|</cite>
+                                                            <a title="" href="http://weibo.com/2118746300/BE8wr6K1s?s=6cm7D0&type=comment" class="relay_handler_a" target="_blank">评论</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                                        <p class="weiboShow_mainFeed_listContent_action WB_linkB"><span class="weiboShow_mainFeed_listContent_actionTime"><a href="http://weibo.com/1764241425/BE9swgWsg?s=6cm7D0" target="_blank">1月5日 16:47</a></span><span class="weiboShow_mainFeed_listContent_actionMore"><a href="http://weibo.com/1764241425/BE9swgWsg?s=6cm7D0&type=repost" target="_blank">转发(65)</a><em class="weiboShow_vline">|</em><a href="http://weibo.com/1764241425/BE9swgWsg?s=6cm7D0&type=comment" target="_blank">评论(11)</a></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            </div>
+                        </div>
+                                                <!-- /weiboShow_main_feed -->
+                                            </div>
+                </div>
+                                                            </div>
+        </div>
+        <!--****** /微博秀 ******* -->
+        <script src="show.js" type="text/javascript"></script><div node-type="outer" class="WB_tips_top" style="position: absolute; visibility: visible; display: none;"><div node-type="inner" class="bg"><div class="tips_inner"><span class="WB_tipS_warn"></span><span class="WB_icon_txt">您的帐号尚未开通微博，<a href="http://weibo.com/signup/full_info.php?appsrc=6cm7D0&backurl=http%3A%2F%2Fwidget.weibo.com%2Fweiboshow%2Findex.php%3Flanguage%3D%26width%3D0%26height%3D300%26fansRow%3D2%26ptype%3D0%26speed%3D0%26skin%3D5%26isTitle%3D0%26noborder%3D0%26isWeibo%3D1%26isFans%3D0%26uid%3D1764241425%26verifier%3D9062046f%26colors%3Dd6f3f7%2Cffffff%2C666666%2C000000%2Cffffff%26dpc%3D1&showlogo=0&vsrc=weiboshow&from=zw" target="_blank">立即开通</a></span><!--temp end--></div></div></div>
+        <!-- SUDA_CODE_START -->
+        <script type="text/javascript" charset="utf-8" src="suda.js"></script>
+        <!-- SUDA_CODE_END -->
+    
+</body></html>

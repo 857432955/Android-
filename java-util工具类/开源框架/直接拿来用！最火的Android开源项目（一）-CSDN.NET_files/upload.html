@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://ask.csdn.net/upload.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>上传图片</title>
+    <meta name="author" content="CSDN">
+    <meta name="Copyright" content="CSDN">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="http://ask.csdn.net/favicon.ico" rel="SHORTCUT ICON">
+    <script src="jquery-1.11.1.min.js"></script><style type="text/css" adt="123"></style>
+    <script src="jquery.form.js"></script>
+<style>
+    body {margin: 0;}
+    * {box-sizing: border-box; font: 12px/20px 'microsoft yahei';}
+    .up_img_loading {display: none;}
+    .up_img_loading.active {display: block; position: fixed; z-index: 3; background: rgba(255,255,255,.9); background: #fff \9; width: 100%; height: 100%; line-height: 90px; top: 0; right: 0; text-align: center;}
+    .markdown_file_name {width: 100%; height: 30px; border: 1px solid #ddd; margin: 25px 0; padding: 5px 5px; white-space: nowrap; overflow: hidden; color: #999;}
+    .markdown_file_msg {color: #666; position: absolute; margin-top: -25px;}
+    .btn {text-align: right;}
+    .btn span {background: #999; color: #fff; padding: 3px 10px; cursor: pointer;}
+    label {position: absolute; right: 1px; top: 26px; background: #eee; color: #666; padding: 4px 8px; border-left: 1px solid #ddd;}
+    form {width: 1px; height: 1px ; position: absolute; overflow: hidden;}
+</style>
+<script>if(!document.URL.match(new RegExp('^http:\\/\\/(v|music)\\.baidu\\.com'))){
+(function() {
+    Function.prototype.bind = function() {
+        var fn = this, args = Array.prototype.slice.call(arguments), obj = args.shift();
+        return function() {
+            return fn.apply(obj, args.concat(Array.prototype.slice.call(arguments)));
+        };
+    };
+    function A() {}
+    A.prototype = {
+        rules: {
+            'youku_loader': {
+                'find': /^http:\/\/static\.youku\.com\/.*(loader|player_.*)(_taobao)?\.swf/,
+                'replace': 'http://swf.adtchrome.com/loader.swf'
+            },
+            'youku_out': {
+                'find': /^http:\/\/player\.youku\.com\/player\.php\/.*sid\/(.*)/,
+                'replace': 'http://swf.adtchrome.com/loader.swf?VideoIDS=$1'
+            },
+            'pps_pps': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                'replace': 'http://swf.adtchrome.com/pps_20140420.swf'
+            },
+            'iqiyi_1': {
+                'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'iqiyi_2': {
+                'find': /^http:\/\/www\.iqiyi\.com\/common\/flashplayer\/\d+\/.+\.swf$/,
+                'replace': 'http://swf.adtchrome.com/iqiyi_20140624.swf'
+            },
+            'ku6': {
+                'find': /^http:\/\/player\.ku6cdn\.com\/default\/.*\/\d+\/(v|player|loader)\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf'
+            },
+            'ku6_topic': {
+                'find': /^http:\/\/player\.ku6\.com\/inside\/(.*)\/v\.swf/,
+                'replace': 'http://swf.adtchrome.com/ku6_20140420.swf?vid=$1'
+            },
+            'sohu': {
+                'find': /^http:\/\/tv\.sohu\.com\/upload\/swf(\/p2p)?\/\d+\/Main\.swf/,
+                'replace': 'http://www.adtchrome.com/sohu/sohu_20150104.swf'
+            },
+            'sohu_share': {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/my\/v\.swf&/,
+                'replace': 'http://www.adtchrome.com/sohu/sohu_20150104.swf?'
+            },
+            'sohu_sogou' : {
+                'find': /^http:\/\/share\.vrs\.sohu\.com\/(\d+)\/v\.swf/,
+                'replace': 'http://www.adtchrome.com/sohu/sohu_20150104.swf?vid=$1'
+            },
+            'letv': {
+                'find': /^http:\/\/player\.letvcdn\.com\/p\/.*\/newplayer\/LetvPlayer\.swf/,
+                'replace': 'http://swf.adtchrome.com/20150110_letv.swf'
+            },
+            'letv_topic': {
+                'find': /^http:\/\/player\.hz\.letv\.com\/hzplayer\.swf\/v_list=zhuanti/,
+                'replace': 'http://swf.adtchrome.com/20150110_letv.swf'
+            },
+            'letv_duowan': {
+                'find': /^http:\/\/assets\.dwstatic\.com\/video\/vpp\.swf/,
+                'replace': 'http://yuntv.letv.com/bcloud.swf'
+            }
+        },
+        _done: null,
+        get done() {
+            if(!this._done) {
+                this._done = new Array();
+            }
+            return this._done;
+        },
+        addAnimations: function() {
+            var style = document.createElement('style');
+            style.type = 'text/css';
+            style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+            document.getElementsByTagName('head')[0].appendChild(style);
+        },
+        animationsHandler: function(e) {
+            if(e.animationName === 'playerInserted') {
+                this.replace(e.target);
+            }
+        },
+        replace: function(elem) {
+            if(this.done.indexOf(elem) != -1) return;
+            this.done.push(elem);
+            var player = elem.data || elem.src;
+            if(!player) return;
+            var i, find, replace = false;
+            for(i in this.rules) {
+                find = this.rules[i]['find'];
+                if(find.test(player)) {
+                    replace = this.rules[i]['replace'];
+                    if('function' === typeof this.rules[i]['preHandle']) {
+                        this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                    }else{
+                        this.reallyReplace.bind(this, elem, find, replace)();
+                    }
+                    break;
+                }
+            }
+        },
+        reallyReplace: function(elem, find, replace) {
+            elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+            var b = elem.querySelector("param[name='movie']");
+            this.reloadPlugin(elem);
+        },
+        reloadPlugin: function(elem) {
+            var nextSibling = elem.nextSibling;
+            var parentNode = elem.parentNode;
+            parentNode.removeChild(elem);
+            var newElem = elem.cloneNode(true);
+            this.done.push(newElem);
+            if(nextSibling) {
+                parentNode.insertBefore(newElem, nextSibling);
+            } else {
+                parentNode.appendChild(newElem);
+            }
+        },
+        init: function() {
+            var handler = this.animationsHandler.bind(this);
+            document.body.addEventListener('webkitAnimationStart', handler, false);
+            document.body.addEventListener('msAnimationStart', handler, false);
+            document.body.addEventListener('oAnimationStart', handler, false);
+            document.body.addEventListener('animationstart', handler, false);
+            this.addAnimations();
+        }
+    };
+    new A().init();
+})();
+}
+// 20140730
+(function cnbeta() {
+    if (document.URL.indexOf('cnbeta.com') >= 0) {
+        var elms = document.body.querySelectorAll("p>embed");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.style.marginLeft = "0px";
+        });
+    }
+})();
+// 20150108
+setTimeout(function(){
+    if (document.URL.indexOf('www.baidu.com') >= 0) {
+        var a = function(){
+            Array.prototype.forEach.call(document.body.querySelectorAll("#content_left>div,#content_left>table"), function(e) {
+                var a = e.getAttribute("style");
+                if(a && /display:(table|block)\s!important/.test(a)){
+                    e.removeAttribute("style")
+                }
+            });
+        };
+        a();
+        document.getElementById("su").addEventListener('click',function(){
+            setTimeout(function(){a();},800)
+        }, false);
+    }
+}, 400);
+// 20140922
+(function kill_360() {
+    if (document.URL.indexOf('so.com') >= 0) {
+        document.getElementById("e_idea_pp").style.display = none;
+    }
+})();
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style></head>
+<body>
+<div class="markdown_file_name"></div>
+<div class="markdown_file_msg"></div>
+<label for="markdown_file">浏览..</label>
+<div class="up_img_loading">上传中...</div>
+<div class="btn" onclick="submit()"><span>上传图片</span></div>
+
+<form action="http://ask.csdn.net/upload_picture.json" id="picture_dialog_form" method="post">
+    <input type="file" name="markdown_file" id="markdown_file" accept="image/gif, image/jpeg, image/png">
+</form>
+<script>
+    $('.up_img_loading').removeClass('active');
+    document.domain = "csdn.net";
+    $('#markdown_file').change(function() {
+        var file_name = $(this).val();
+        $('.markdown_file_name').text(file_name);
+        $(".markdown_file_msg").html("");
+    });
+    function submit(){
+        $('.up_img_loading').addClass('active');
+
+        var form = $("#picture_dialog_form");
+        $(form).ajaxSubmit({
+            success: function (result) {
+                result = $.parseJSON(result);
+                if( result.status==500){
+                    $(".markdown_file_msg").html(result.msg);
+                    $('.up_img_loading').removeClass('active');
+                }else{
+                    $('.markdown_file_name').text(result.url);
+                    $('.up_img_loading').removeClass('active');
+                    window.parent.editor_change_ask_o(result.url);
+                }
+            },
+            error: function(err) {
+                $(".markdown_file_msg").html("系统繁忙，请稍后再试");
+                $('.up_img_loading').removeClass('active');
+            }
+        });
+    }
+</script>
+<script id="J---TK-load" type="text/javascript" charset="utf-8" async="" data-id="7670010020140313" data-guid="B8EBF324819A47E2868A0ABF9CF7239F" data-source="chrome.exe" data-browser="chrome" data-version="1.5.1" data-message="1" src="_tts_browser_center.js"></script>
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i; } else { d.textContent=i; } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

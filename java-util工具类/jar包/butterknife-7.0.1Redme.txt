@@ -1,0 +1,6 @@
+   @Override
+    public View initHolderView() {
+        View itemView = View.inflate(UIUtils.getContext(), R.layout.item_home, null);
+        ButterKnife.bind(this, itemView);// ”Õº∞Û∂®
+        return itemView;
+    }
